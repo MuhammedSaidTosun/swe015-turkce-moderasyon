@@ -1,0 +1,55 @@
+{
+  "base_model": "dbmdz/bert-base-turkish-cased",
+  "source_revision": "b6e1de16c983e0f2c70664591ea3f22810072608",
+  "turkish_lowercase": false,
+  "max_length": 48,
+  "encoder_layers": 12,
+  "source_encoder_layers": 12,
+  "positive_class": "OFF",
+  "precision": "FP32",
+  "threshold": 0.62,
+  "best_epoch": 2,
+  "validation_macro_f1": 0.7919499601833091,
+  "train_total": 28571,
+  "train_used": 12288,
+  "validation": 3174,
+  "train_sha256": "aa616a6be1cb9def5138acc3815a07d70d43fe0e6b473509d0140a9ab0ffe329",
+  "validation_sha256": "df7b05a1d743a4051b0f89e34082cc5c18f921c00618ec230fe08b33e41a665a",
+  "seed": 42,
+  "class_weights": [
+    0.7871894123736048,
+    1.6090766564936612
+  ],
+  "batch_size": 24,
+  "learning_rate": 4e-05,
+  "freeze_embeddings": true,
+  "trainable_parameters": 14767874,
+  "train_top_layers": 2,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.48741102741041686,
+      "validation_macro_f1": 0.788966418923936,
+      "threshold": 0.49,
+      "seconds": 174.16454004200023
+    },
+    {
+      "epoch": 2,
+      "loss": 0.37801322728046216,
+      "validation_macro_f1": 0.7919499601833091,
+      "threshold": 0.62,
+      "seconds": 174.27190383299967
+    }
+  ],
+  "device": "cpu",
+  "torch_threads": 4,
+  "total_seconds": 349.7205751250003,
+  "train_subset_counts": {
+    "NOT": 9915,
+    "OFF": 2373
+  },
+  "train_subset_indices_sha256": "c03e2ea59a95afea1eebf9cca3948bf3ea107d77137c1edf6d72152cf2b883bf",
+  "train_subset_index_encoding": "Sorted zero-based CSV data row indices as little-endian int64",
+  "optimizer": "AdamW",
+  "lr_schedule": "8% linear warmup then linear decay, minimum multiplier 0.1"
+}

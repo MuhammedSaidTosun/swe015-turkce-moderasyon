@@ -1,0 +1,42 @@
+{
+  "evaluation_split": "test",
+  "evaluation_sha256": "cf42023d63155f16dcf3f3aefa80debce691181324307cac638c877aa927ec32",
+  "rows_by_split": {
+    "train": 28571,
+    "validation": 3174,
+    "test": 3528
+  },
+  "tfidf_selection": {
+    "selected_C": 2.0,
+    "validation_macro_f1": 0.7284263376025835,
+    "C_candidates": [
+      0.5,
+      2.0
+    ]
+  },
+  "latency_protocol": "Loaded model, batch=1, includes normalization and prediction; 10 warmups; identical seeded shuffle of held-out messages; one numerical library thread.",
+  "size_definition": "Deployed artifact on disk in decimal MB. Rules JSON and compressed TF-IDF joblib exclude shared code and runtime dependencies.",
+  "hardware": {
+    "cpu": "Apple M4",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "machine": "arm64"
+  },
+  "models": [
+    {
+      "model": "rules",
+      "macro_f1": 0.5339616695791676,
+      "size_mb": 0.000588,
+      "mean_cpu_latency_ms": 0.041771385,
+      "runs": 200,
+      "cpu": "Apple M4"
+    },
+    {
+      "model": "tfidf",
+      "macro_f1": 0.721434494598054,
+      "size_mb": 1.028072,
+      "mean_cpu_latency_ms": 0.18418473000000002,
+      "runs": 200,
+      "cpu": "Apple M4"
+    }
+  ]
+}

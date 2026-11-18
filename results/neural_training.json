@@ -1,0 +1,222 @@
+{
+  "seed": 42,
+  "rows": {
+    "train": 28571,
+    "validation": 3174
+  },
+  "split_sha256": {
+    "train": "aa616a6be1cb9def5138acc3815a07d70d43fe0e6b473509d0140a9ab0ffe329",
+    "validation": "df7b05a1d743a4051b0f89e34082cc5c18f921c00618ec230fe08b33e41a665a"
+  },
+  "word2vec": {
+    "method": "CBOW negative sampling",
+    "dimensions": 48,
+    "context_radius": 3,
+    "negatives": 5,
+    "negative_distribution": "train token count raised to 0.75",
+    "min_frequency": 2,
+    "subsampling": 0.003,
+    "batch_size": 256,
+    "epochs": 12,
+    "vocab_size": 29211,
+    "training_tokens": 420995,
+    "training_tokens_in_vocab": 364770,
+    "epoch_loss": [
+      3.563631534576416,
+      2.832258939743042,
+      2.6632471084594727,
+      2.5477824211120605,
+      2.4511830806732178,
+      2.363703727722168,
+      2.285081386566162,
+      2.2136504650115967,
+      2.148012399673462,
+      2.093200206756592,
+      2.0463223457336426,
+      2.0070648193359375
+    ]
+  },
+  "classifier": {
+    "representation": "mean of in-vocabulary word vectors, standardized on train",
+    "method": "one ReLU hidden layer, sigmoid output",
+    "optimizer": "minibatch SGD with Nesterov momentum",
+    "learning_rate": 0.018,
+    "momentum": 0.9,
+    "alpha": 0.001,
+    "batch_size": 128,
+    "hidden_units": 64,
+    "train_class_weights": [
+      0.7871980282597288,
+      1.6090030772192159
+    ],
+    "best_epoch": 19,
+    "epochs_run": 27,
+    "threshold": 0.45999999999999996,
+    "validation_macro_f1": 0.647276687281114,
+    "validation_history": [
+      {
+        "epoch": 1,
+        "loss": 0.5964879460102083,
+        "val_macro_f1": 0.6213832196661238,
+        "threshold": 0.41000000000000003
+      },
+      {
+        "epoch": 2,
+        "loss": 0.5775118993067954,
+        "val_macro_f1": 0.6203703703703705,
+        "threshold": 0.44999999999999996
+      },
+      {
+        "epoch": 3,
+        "loss": 0.5723540900184612,
+        "val_macro_f1": 0.6268953869314099,
+        "threshold": 0.43000000000000005
+      },
+      {
+        "epoch": 4,
+        "loss": 0.5676736590625793,
+        "val_macro_f1": 0.6399903869262197,
+        "threshold": 0.42000000000000004
+      },
+      {
+        "epoch": 5,
+        "loss": 0.5649067445165858,
+        "val_macro_f1": 0.6329141349036081,
+        "threshold": 0.45999999999999996
+      },
+      {
+        "epoch": 6,
+        "loss": 0.5613254825237988,
+        "val_macro_f1": 0.6263698206472974,
+        "threshold": 0.48
+      },
+      {
+        "epoch": 7,
+        "loss": 0.5585437132075408,
+        "val_macro_f1": 0.6290721657463267,
+        "threshold": 0.43999999999999995
+      },
+      {
+        "epoch": 8,
+        "loss": 0.5569971489372196,
+        "val_macro_f1": 0.6358589792916005,
+        "threshold": 0.47
+      },
+      {
+        "epoch": 9,
+        "loss": 0.5536603105289424,
+        "val_macro_f1": 0.6352709466284738,
+        "threshold": 0.47
+      },
+      {
+        "epoch": 10,
+        "loss": 0.5522542950785257,
+        "val_macro_f1": 0.6409889749077529,
+        "threshold": 0.43999999999999995
+      },
+      {
+        "epoch": 11,
+        "loss": 0.5496476451937871,
+        "val_macro_f1": 0.6356966531383443,
+        "threshold": 0.43999999999999995
+      },
+      {
+        "epoch": 12,
+        "loss": 0.5480094242170613,
+        "val_macro_f1": 0.6357198136302613,
+        "threshold": 0.43999999999999995
+      },
+      {
+        "epoch": 13,
+        "loss": 0.5463847259379434,
+        "val_macro_f1": 0.6467341739203052,
+        "threshold": 0.41000000000000003
+      },
+      {
+        "epoch": 14,
+        "loss": 0.5455193145250871,
+        "val_macro_f1": 0.6437675576723473,
+        "threshold": 0.42000000000000004
+      },
+      {
+        "epoch": 15,
+        "loss": 0.5439346890126419,
+        "val_macro_f1": 0.6401397259482651,
+        "threshold": 0.4
+      },
+      {
+        "epoch": 16,
+        "loss": 0.543084465866141,
+        "val_macro_f1": 0.6308404363520332,
+        "threshold": 0.5
+      },
+      {
+        "epoch": 17,
+        "loss": 0.5416045595153759,
+        "val_macro_f1": 0.6463383832563667,
+        "threshold": 0.45999999999999996
+      },
+      {
+        "epoch": 18,
+        "loss": 0.5405203616190744,
+        "val_macro_f1": 0.6368778709581053,
+        "threshold": 0.44999999999999996
+      },
+      {
+        "epoch": 19,
+        "loss": 0.5382241372341311,
+        "val_macro_f1": 0.647276687281114,
+        "threshold": 0.45999999999999996
+      },
+      {
+        "epoch": 20,
+        "loss": 0.5367506520609865,
+        "val_macro_f1": 0.6412083485804437,
+        "threshold": 0.4
+      },
+      {
+        "epoch": 21,
+        "loss": 0.5354063342699861,
+        "val_macro_f1": 0.6328421526493622,
+        "threshold": 0.44999999999999996
+      },
+      {
+        "epoch": 22,
+        "loss": 0.5329462848000864,
+        "val_macro_f1": 0.6394709154920377,
+        "threshold": 0.42000000000000004
+      },
+      {
+        "epoch": 23,
+        "loss": 0.5332538841964809,
+        "val_macro_f1": 0.6305088239359673,
+        "threshold": 0.47
+      },
+      {
+        "epoch": 24,
+        "loss": 0.5326353445619539,
+        "val_macro_f1": 0.6312363750229221,
+        "threshold": 0.53
+      },
+      {
+        "epoch": 25,
+        "loss": 0.531053544893803,
+        "val_macro_f1": 0.6380626810913442,
+        "threshold": 0.43999999999999995
+      },
+      {
+        "epoch": 26,
+        "loss": 0.5294258258199322,
+        "val_macro_f1": 0.6359671170358773,
+        "threshold": 0.42000000000000004
+      },
+      {
+        "epoch": 27,
+        "loss": 0.5290895351749746,
+        "val_macro_f1": 0.6339698601222407,
+        "threshold": 0.43000000000000005
+      }
+    ]
+  },
+  "training_seconds": 56.29297879600017
+}

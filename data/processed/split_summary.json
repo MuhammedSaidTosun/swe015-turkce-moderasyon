@@ -1,0 +1,38 @@
+{
+  "release": "OffensEval-TR 2020",
+  "source_url": "https://coltekin.github.io/offensive-turkish/offenseval2020-turkish.zip",
+  "source_file_sha256": {
+    "offenseval-tr-training-v1.tsv": "8509c01c4bf387d9e387c4637829585431cc045adaf7d0413c0022bf2bcd4baa",
+    "offenseval-tr-testset-v1.tsv": "9052784e13248e58658e34a4f86a3463ef8b2594d2feb289e4b29bba2866b437",
+    "offenseval-tr-labela-v1.tsv": "ae9b0837e948c3d9c3a147d2a415989a4940a7756d5821b3289276574941c9e3"
+  },
+  "source_training_rows": 31756,
+  "duplicate_training_rows_removed": 9,
+  "training_rows_matching_test_removed": 2,
+  "split_seed": 42,
+  "validation_fraction_per_class": 0.1,
+  "label_map": {
+    "NOT": 0,
+    "OFF": 1
+  },
+  "splits": {
+    "train": {
+      "rows": 28571,
+      "NOT": 23053,
+      "OFF": 5518,
+      "sha256": "aa616a6be1cb9def5138acc3815a07d70d43fe0e6b473509d0140a9ab0ffe329"
+    },
+    "validation": {
+      "rows": 3174,
+      "NOT": 2561,
+      "OFF": 613,
+      "sha256": "df7b05a1d743a4051b0f89e34082cc5c18f921c00618ec230fe08b33e41a665a"
+    },
+    "test": {
+      "rows": 3528,
+      "NOT": 2812,
+      "OFF": 716,
+      "sha256": "cf42023d63155f16dcf3f3aefa80debce691181324307cac638c877aa927ec32"
+    }
+  }
+}

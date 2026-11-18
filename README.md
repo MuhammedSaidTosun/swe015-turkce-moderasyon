@@ -2,6 +2,8 @@
 
 Türkçe sohbet mesajlarını beş yöntemle karşılaştıran SWE015 uygulaması. Tam kurulumda varsayılan model, saldırgan dil tespiti için ince ayar yapılmış BERTurk’ün INT8 sürümüdür. Kullanıcı modeli değiştirebilir. Saldırgan olarak işaretlenen mesaj maskelenir. Yan panelde mesaj başına CPU tahmin süresi ve tarayıcının yanıtı beklediği toplam süre gösterilir.
 
+On slaytlık sunumda mimari, teknik harita, sonuç tablosu, bağlam hatası ve AI kullanım açıklaması yer alır. Teslimden önce kapaktaki öğrenci numarası ve video bağlantısı tamamlanır. [Sunumu PDF olarak aç](docs/SWE015_Turkce_Moderasyon_Sunum.pdf) · [Düzenlenebilir PowerPoint](docs/SWE015_Turkce_Moderasyon_Sunum.pptx)
+
 ## Mac’te demoyu açma
 
 Python 3.12 ve özel depoya erişimi olan bir GitHub hesabı gerekir. Ağırlıkları indirmek için GitHub CLI’ı (`gh`) aynı hesapla kullanın. Depoyu daha önce klonladıysanız proje klasöründe `git pull --ff-only` çalıştırarak ilk iki komutu atlayabilirsiniz.
@@ -110,7 +112,7 @@ Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu
 | 1:15–1:45 | Beş modelin tablosunu açın. INT8’in boyutunu, ortalama süresini ve yakaladığı 420 saldırgan mesajı gösterin. |
 | 1:45–1:55 | Test verisinin kaynağını ve oyun sohbetlerine genelleme sınırlamasını söyleyin. |
 
-Teslim için 8–12 slaytlık PDF ve sesli ekran kaydı hazırlanır. İlk slayta depo ve video bağlantıları eklenir. Depo özel olduğundan, teslimden önce değerlendirecek kişinin erişimini doğrulayın.
+Sesli kaydı en fazla iki dakika olacak şekilde tamamlayın. Video bağlantısını ve öğrenci numarasını düzenlenebilir sunumun ilk slaydına ekleyip PDF’yi yeniden dışa aktarın. Teslimden önce değerlendirecek kişinin özel depoya ve videoya erişebildiğini doğrulayın.
 
 ## Veri ve atıf
 

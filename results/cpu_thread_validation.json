@@ -1,0 +1,30 @@
+{
+  "split": "validation",
+  "sha256": "df7b05a1d743a4051b0f89e34082cc5c18f921c00618ec230fe08b33e41a665a",
+  "cpu": "Apple M4",
+  "seed": 42,
+  "warmups": 10,
+  "runs": 120,
+  "measurements": [
+    {
+      "threads": 1,
+      "mean_ms": 59.49207466666667,
+      "p95_ms": 99.43675,
+      "max_ms": 102.000375
+    },
+    {
+      "threads": 2,
+      "mean_ms": 58.49734446666666,
+      "p95_ms": 93.538375,
+      "max_ms": 101.516708
+    },
+    {
+      "threads": 4,
+      "mean_ms": 58.604870424999994,
+      "p95_ms": 91.645791,
+      "max_ms": 102.3455
+    }
+  ],
+  "selected_threads": 2,
+  "selection": "Lowest mean single-message latency among 1, 2 and 4 CPU threads."
+}

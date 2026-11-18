@@ -12,7 +12,8 @@ from pathlib import Path
 
 import numpy as np
 import torch
-from bert_model import prepare_text, quantize_for_cpu
+from bert_model import prepare_text
+from export_bert_onnx import export_onnx_int8
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 from transformers import AutoConfig, AutoModelForSequenceClassification, AutoTokenizer
@@ -197,16 +198,10 @@ def main(args):
                 best_score = score
                 metadata.update(threshold=cutoff, best_epoch=epoch, validation_macro_f1=score)
                 export(model, tokenizer, fp_staging, metadata)
-        model.cpu()
-        model.load_state_dict(torch.load(fp_staging / "weights.pt", map_location="cpu", weights_only=True))
-        quantized = quantize_for_cpu(model)
-        int_metadata = {
-            **metadata,
-            "precision": "INT8",
-            "quantization": "dynamic signed INT8 linear weights, row-wise unsigned 8-bit embeddings; other operations float",
-            "export_backend": torch.backends.quantized.engine,
-        }
-        export(quantized, tokenizer, int_staging, int_metadata)
+        # The exporter reloads the validation-selected checkpoint from disk.
+        # Release the live training model and AdamW state before allocating the graph.
+        del model, optim, schedule
+        export_onnx_int8(fp_staging, int_staging)
         install_exports(staging, (fp_dir, int_dir))
     report = {
         **metadata,
@@ -216,6 +211,7 @@ def main(args):
         "train_subset_indices_sha256": hashlib.sha256(train_ids.astype("<i8").tobytes()).hexdigest(),
         "train_subset_index_encoding": "Sorted zero-based CSV data row indices as little-endian int64",
         "optimizer": "AdamW",
+        "int8_runtime": "ONNX Runtime CPU",
         "lr_schedule": "8% linear warmup then linear decay, minimum multiplier 0.1",
         "validation": len(val_y),
         "train_sha256": hashlib.sha256(train_path.read_bytes()).hexdigest(),

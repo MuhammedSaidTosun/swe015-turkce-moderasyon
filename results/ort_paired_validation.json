@@ -1,0 +1,22 @@
+{
+  "validation_sha256": "df7b05a1d743a4051b0f89e34082cc5c18f921c00618ec230fe08b33e41a665a",
+  "rows": 3174,
+  "runs": 200,
+  "warmups": 10,
+  "shuffle_seed": 42,
+  "batch_size": 1,
+  "intra_op_threads": 1,
+  "inter_op_threads": 1,
+  "execution_provider": "CPUExecutionProvider",
+  "cpu": "Apple M4",
+  "onnxruntime_version": "1.32.0",
+  "fp32_onnx": {
+    "mean_latency_ms": 12.088948540003912,
+    "timed_subset_macro_f1": 0.8475609756097561
+  },
+  "int8_onnx": {
+    "mean_latency_ms": 9.254669584997828,
+    "timed_subset_macro_f1": 0.8441558441558441
+  },
+  "int8_validation_macro_f1": 0.7948104543417808
+}

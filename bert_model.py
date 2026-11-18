@@ -15,6 +15,16 @@ from transformers import AutoConfig, AutoModelForSequenceClassification, AutoTok
 CPU_THREADS = 1
 
 
+def load_deployed_bert(folder, threads=CPU_THREADS):
+    """Load the independently deployable PyTorch or ONNX model in this directory."""
+    folder = Path(folder)
+    if (folder / "model.onnx").is_file():
+        from bert_onnx import BertOnnxModerator
+
+        return BertOnnxModerator(folder, threads=threads)
+    return BertModerator(folder)
+
+
 def prepare_text(text, turkish_lowercase):
     return text.translate(str.maketrans({"I": "ı", "İ": "i"})).lower() if turkish_lowercase else text
 

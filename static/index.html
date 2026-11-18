@@ -57,19 +57,18 @@
     <aside class="card panel">
       <label for="model">Moderasyon modeli</label>
       <select id="model">
-        <option value="tfidf">TF-IDF + lojistik regresyon</option>
-        <option value="rules">Sözlük + düzenleme mesafesi</option>
-        <option value="neural">Word2Vec + sinir ağı</option>
+        <!-- MODEL_OPTIONS -->
       </select>
-      <h2>CPU işlem süreleri</h2>
-      <p id="no-times" class="empty">Her mesajın tahmin süresi burada görünür.</p>
-      <ol id="times" aria-label="Mesaj bazında tahmin süreleri"></ol>
+      <h2>Yanıt ve CPU süreleri</h2>
+      <p id="no-times" class="empty">Her mesajın toplam yanıt ve CPU tahmin süresi burada görünür.</p>
+      <ol id="times" aria-label="Mesaj bazında yanıt ve CPU süreleri"></ol>
     </aside>
   </div>
 </main>
 <script>
   const el = id => document.getElementById(id);
-  const modelNames = { tfidf: "TF-IDF", rules: "Sözlük", neural: "Word2Vec" };
+  const modelNames = Object.fromEntries(Array.from(el("model").options, option =>
+    [option.value, option.dataset.short]));
   const percent = new Intl.NumberFormat("tr", { style: "percent", maximumFractionDigits: 1 });
   const duration = new Intl.NumberFormat("tr", { minimumFractionDigits: 2, maximumFractionDigits: 3 });
   let count = 0;
@@ -79,15 +78,15 @@
     if (className) node.className = className;
     return node;
   };
-  function render(result) {
+  function render(result, responseMs) {
     if (!count) el("messages").replaceChildren();
     count++;
     const message = element("article", "", result.flagged ? "message flag" : "message");
     const scoreName = result.score_kind === "heuristic" ? "Sezgisel skor" : "Model güveni";
     let score = scoreName + " " + percent.format(result.confidence);
-    if (result.model === "neural") {
-      score = "Saldırgan sınıfının olasılığı " + percent.format(result.offensive_probability)
-        + " · Karar eşiği " + percent.format(result.decision_threshold);
+    if (typeof result.decision_threshold === "number") {
+      score += " · Saldırganlık olasılığı " + percent.format(result.offensive_probability)
+        + " (eşik " + percent.format(result.decision_threshold) + ")";
     }
     const label = result.flagged ? "Saldırgan" : "Normal";
     message.append(element("p", result.text),
@@ -96,8 +95,10 @@
     el("messages").scrollTop = el("messages").scrollHeight;
     el("no-times").hidden = true;
     const timeRow = element("li", "", "timing");
-    timeRow.append(element("small", "#" + count + " · " + modelNames[result.model]),
-      element("b", duration.format(result.latency_ms) + " ms"));
+    const detail = element("div", "");
+    detail.append(element("b", duration.format(responseMs) + " ms"),
+      document.createElement("br"), element("small", "CPU " + duration.format(result.latency_ms) + " ms"));
+    timeRow.append(element("small", "#" + count + " · " + modelNames[result.model]), detail);
     el("times").prepend(timeRow);
   }
   function reset() {
@@ -120,6 +121,7 @@
     input.readOnly = true;
     el("clear").disabled = true;
     try {
+      const started = performance.now();
       const response = await fetch("/predict", { method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ model: el("model").value, text }) });
       if (!response.ok) {
@@ -127,8 +129,9 @@
         throw new Error(typeof body.detail === "string" ? body.detail : "Mesaj işlenemedi.");
       }
       const result = await response.json();
+      const responseMs = performance.now() - started;
       input.value = "";
-      render(result);
+      render(result, responseMs);
     } catch (error) {
       el("error").textContent = error.message || "Uygulamaya ulaşılamadı.";
       el("error").hidden = false;

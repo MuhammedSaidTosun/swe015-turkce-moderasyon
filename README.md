@@ -1,30 +1,51 @@
 # Türkçe sohbet moderasyonu · SWE015
 
-Kullanıcının yazdığı Türkçe mesaj sözlük, TF-IDF veya Word2Vec + sinir ağı ile sınıflandırılır. Saldırgan olarak işaretlenen mesaj sohbet geçmişinde maskelenir. Yan panel her mesaj için kullanılan modeli ve CPU tahmin süresini gösterir.
+Türkçe sohbet mesajlarını beş yöntemle karşılaştıran SWE015 uygulaması. Tam kurulumda varsayılan model, saldırgan dil tespiti için ince ayar yapılmış BERTurk’ün INT8 sürümüdür. Kullanıcı modeli değiştirebilir. Saldırgan olarak işaretlenen mesaj maskelenir. Yan panelde mesaj başına CPU tahmin süresi ve tarayıcının yanıtı beklediği toplam süre gösterilir.
 
 ## Mac’te demoyu açma
 
-GitHub hesabınız bu özel depoya erişebiliyorsa Terminal’de aşağıdaki komutlarla depoyu klonlayıp Python 3.12 ortamını kurabilirsiniz.
+Python 3.12 ve özel depoya erişimi olan bir GitHub hesabı gerekir. Ağırlıkları indirmek için GitHub CLI’ı (`gh`) aynı hesapla kullanın. Depoyu daha önce klonladıysanız proje klasöründe `git pull --ff-only` çalıştırarak ilk iki komutu atlayabilirsiniz.
 
 ```bash
 git clone https://github.com/MuhammedSaidTosun/swe015-turkce-moderasyon.git
 cd swe015-turkce-moderasyon
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-bert.txt
+gh release download berturk-moderasyon-v1 --pattern berturk-models.zip --dir artifacts --skip-existing
+python -m zipfile -e artifacts/berturk-models.zip artifacts
 python -m uvicorn app:app
 ```
 
-Tarayıcıda [yerel uygulamayı açın](http://127.0.0.1:8000). Üç modelin dosyaları `artifacts/` klasöründe hazırdır. Önceki sürüm 8000 numaralı portu kullanıyorsa o Terminal penceresinde Ctrl+C ile durdurun. Yeni sunucuyu başlattıktan sonra Helium’daki sayfayı ⌘R ile yenileyin.
+Tarayıcıda [yerel uygulamayı açın](http://127.0.0.1:8000). Açılır menüde **BERTurk · INT8** seçili olarak gelir. Eski sunucu aynı portu kullanıyorsa o Terminal penceresinde Ctrl+C ile durdurun veya yeni sunucuyu `python -m uvicorn app:app --port 8001` ile başlatıp `http://127.0.0.1:8001` adresini açın. Üç küçük modelin dosyaları klonla birlikte gelir. İki BERTurk modelini içeren sürüm paketi ayrıca indirilir. [Model paketinin sürüm sayfası](https://github.com/MuhammedSaidTosun/swe015-turkce-moderasyon/releases/tag/berturk-moderasyon-v1)
 
-## İlk deneme
+## Beş modelin aynı test kümesindeki sonucu
 
-1. Model menüsünden **Sözlük + düzenleme mesafesi** seçin. “Bu oyunun son güncellemesi çok kötü.” mesajını gönderin. Karar, kullanılan skor ve mesajın işlem süresi görünür.
-2. “Sen bir aptalsın.” mesajını gönderin. Sözlük eşleştiğinde metnin yerinde “Mesaj maskelendi” görülür. Sözlükte gösterilen skor elle belirlenmiş bir kural skorudur.
-3. **TF-IDF + lojistik regresyon** seçip aynı iki mesajı yeniden deneyin. Gösterilen güven, sınıflandırıcının seçtiği sınıfa verdiği olasılıktır. İki modelin ayrıştığı bir mesaj bulup nedenini tartışın.
-4. **Word2Vec + sinir ağı** ile aynı mesajları karşılaştırın. Ekran bu modelin saldırganlık olasılığını ve karar eşiğini gösterir. Olasılık eşiğe ulaştığında mesaj maskelenir.
+OffensEval-TR resmî test kümesindeki 3.528 mesajın 716’sı saldırgan, 2.812’si normal olarak etiketlendi. Makro F1, her iki sınıfın F1 puanına eşit ağırlık verir. Gecikme için önceden belirlenen hedef, CPU’da tek bir mesajı ortalama 50 ms içinde sınıflandırmaktı.
 
-**Bağlam deneyi.** “Ona aptal demen hiç hoş değil.” cümlesi, bir hakareti eleştiriyor. Sözlük “aptal” sözcüğünü yakalayıp cümleyi maskeledi. TF-IDF aynı cümleyi normal olarak gösterdi. Sinir ağı da cümleyi maskeledi. Saldırganlık olasılığı %46,4 ile doğrulamada seçilen %46 eşiğinin hemen üstündeydi. Bu, demoyu anlamak için yazılmış bir örnektir.
+| Model | Test makro F1 | Model boyutu (MB) | Ortalama CPU (ms) | Yakalanan saldırgan mesaj (/716) | Yanlış alarm (/2.812) |
+|---|---:|---:|---:|---:|---:|
+| Sözlük + düzenleme mesafesi | 0,5340 | 0,000588 | 0,052 | 70 | 18 |
+| TF-IDF + lojistik regresyon | 0,7214 | 1,028 | 0,189 | 422 | 365 |
+| Word2Vec + sinir ağı | 0,6330 | 5,413 | 0,031 | 305 | 439 |
+| BERTurk FP32 · PyTorch | 0,7817 | 443,31 | 13,876 | 421 | 170 |
+| **BERTurk INT8 · ONNX Runtime** | **0,7838** | **112,55** | **9,009** | **420** | **162** |
+
+Ölçümler Apple M4’te tek CPU iş parçacığıyla yapıldı. On ısınma çağrısından sonra her modele aynı sırada 200 mesaj, tek tek verildi. Süre metin ön işlemeyi ve model tahminini kapsar. Tarayıcı ve ağ süreleri ayrıca uygulamada görüntülenir. BERTurk boyutları ağırlıkları, tokenizer’ı ve yapılandırmayı kapsar. [Tam CSV](results/five_model_test.csv) · [Ortam, ölçüm protokolü ve dosya özetleri](results/five_model_test.json)
+
+INT8 paketi FP32’ye göre %74,6 daha küçük. INT8 tahminlerinin 95. yüzdeliği 15,33 ms, en yavaş tahmin 16,51 ms idi. Bu 200 ölçümde 50 ms’yi aşan tahmin olmadı. İlk PyTorch INT8 denemesi ise aynı cihazda ortalama 55,83 ms sürdü. Son sürümde çıkarım motoru da değişti. Etkiyi aynı motorla kontrol ettiğimizde ONNX Runtime, doğrulamadan seçilen aynı 200 mesajda FP32 için 12,09 ms, INT8 için 9,25 ms verdi. [İlk INT8 ölçümü](results/five_model_test_1thread.csv) · [Aynı çıkarım motoruyla karşılaştırma](results/ort_paired_validation.json)
+
+## Sohbette denenebilecek üç mesaj
+
+Varsayılan BERTurk INT8 modelinin gerçek API çıktıları aşağıdadır. Karar eşiği %62. Sohbet ekranında seçili sınıfa güven ile saldırganlık olasılığının ayrı anlamları vardır.
+
+| Yazılan mesaj | Saldırganlık olasılığı | Ekrandaki sonuç |
+|---|---:|---|
+| Herkese iyi oyunlar! | %2,95 | Mesaj görünür. |
+| Sen bir aptalsın. | %94,85 | Mesaj maskelenir. |
+| Ona aptal demen hiç hoş değil. | %65,01 | Mesaj maskelenir. Hakareti eleştiren bir kullanıcı için bu bir yanlış alarmdır. |
+
+Son cümleyi TF-IDF ile tekrar gönderin. TF-IDF cümleyi normal sayar. Bu örnekler canlı demo için yazıldı. Test puanları resmî veri kümesinden hesaplandı.
 
 ## Eğitimi ve ölçümü tekrarlama
 
@@ -34,47 +55,60 @@ Aynı Python ortamında, proje klasöründen çalıştırın. Veri hazırlama ad
 python data_prep.py
 python train_classical.py
 python train_neural.py
-python evaluate_neural.py
+python train_bert.py
+python evaluate_all.py
 ```
 
 Eğitim, TF-IDF sözlüğünü eğitim mesajlarından çıkarır. Lojistik regresyonun `C` değerini doğrulama kümesindeki macro-F1 ile seçer. `data/processed/test.csv` tüm modeller için ortak test dosyasıdır. Model veya eşik geliştirirken `python train_classical.py --eval-split validation` kullanın.
 
 Word2Vec, eğitim mesajlarında bir kelimenin sağındaki ve solundaki en fazla üçer kelimeden ortadaki kelimeyi tahmin etmeyi öğrenir (CBOW, beş negatif örnek). En az iki kez görülen kelimeler 48 boyutlu vektörlerle temsil edilir. Sınıflandırıcı bir mesajdaki bilinen kelimelerin vektörlerini ortalar, eğitim kümesinin istatistikleriyle standartlaştırır ve 64 ReLU nöronundan geçirir. Sinir ağı mini-batch SGD ve geri yayılımla eğitilir. Eğitim turu ve karar eşiği doğrulama macro-F1 değerine göre seçilir. `results/neural_training.json` eğitim kaydını içerir.
 
-`results/classical_test.csv` her modelin macro-F1, diskteki model boyutu (ondalık MB), ortalama CPU tahmin süresi (ms) ve donanım bilgisini içerir. JSON dosyasında test dosyasının SHA-256 özeti, seçilen hiperparametre ve ölçüm protokolü de yer alır. Gecikme 10 ısınma çağrısından sonra, aynı sıradaki 200 mesajda, her seferinde tek mesaj işlenerek ölçülür. Sonuçlara ağ ve tarayıcı süresi dahil edilmez.
+BERTurk için başlangıç noktası, `dbmdz/bert-base-turkish-cased` modelinin `b6e1de16c983e0f2c70664591ea3f22810072608` sürümüdür. Büyük ve küçük harf korunur. Eğitim maliyetini Mac CPU’suna uygun tutmak için sabit tohumla sınıf oranlarını koruyan 12.288 eğitim örneği kullanılır. On iki encoder bloğunun tamamı çıkarımda çalışır. Eğitim sırasında kelime gömmeleri ve ilk on blok sabittir. Son iki blok, pooler ve iki sınıflı çıkış katmanı güncellenir. İki tur boyunca en fazla 48 token, 24 mesajlık batch ve AdamW ile 0,00004 öğrenme hızı kullanılır. Tur ve sınıflandırma eşiği, 3.174 doğrulama mesajında macro-F1 ile seçilir. İkinci tur doğrulamada 0,79195 macro-F1 ile seçildi. FP32 ve INT8 aynı 0,62 karar eşiğini kullanır. Tam eğitim, doğrulama ve ilk dışa aktarma Apple M4 CPU üzerinde 350 saniye sürdü. Dağıtılan INT8 sürümünde ONNX Runtime kullanılır. Doğrusal katmanların ağırlıkları kanal başına işaretli INT8 olarak, üç gömme tablosu ise tablo başına işaretsiz 8 bit olarak saklanır. Dinamik giriş kuantizasyonu çalışma sırasında yapılır. [BERTurk model kartı](https://huggingface.co/dbmdz/bert-base-turkish-cased)
 
-### Veri bölümü ve ilk Mac ölçümü
+## Uygulamada veri akışı
 
-Kaynak eğitim bölümünde 31.756 mesaj vardı. Boşlukları ve Unicode biçimini eşitleyerek saptanan 9 tekrar ile resmî testte de bulunan 2 eğitim kaydı çıkarıldı. Kalan örneklerden sınıf oranları korunarak 28.571 eğitim ve 3.174 doğrulama mesajı ayrıldı. Resmî test kümesindeki 3.528 mesajın tamamı korundu. İlk çalıştırmada kaynak dosyalar [OffensEval dağıtımının bir aynasından](https://github.com/vidhur2k/Multilngual-Hate-Speech) alındı. `data_prep.py` varsayılan olarak yazarın sunduğu ZIP’i indirir. Arşivi kendiniz indirirseniz `python data_prep.py --archive offenseval2020-turkish.zip` komutunu kullanabilirsiniz.
+```mermaid
+flowchart TD
+    UI["Tarayıcı · mesaj ve model seçimi"] --> API["FastAPI · CPU"]
+    API --> TR["Türkçe metin normalizasyonu"]
+    API --> TOK["BERTurk tokenizer · en fazla 48 token"]
+    TR --> RULE["Sözlük ve düzenleme mesafesi"]
+    TR --> TF["TF-IDF ve lojistik regresyon"]
+    TR --> NN["Word2Vec ve sinir ağı"]
+    TOK --> FP["BERTurk FP32"]
+    TOK --> INT["BERTurk INT8"]
+    RULE --> OUT["Etiket, skor ve tahmin süresi"]
+    TF --> OUT
+    NN --> OUT
+    FP --> OUT
+    INT --> OUT
+    OUT --> VIEW["Sohbet · saldırgan mesajı maskele"]
+```
 
-| Yöntem | Test macro-F1 | Diskte boyut (MB) | Ortalama CPU gecikmesi (ms) |
-|---|---:|---:|---:|
-| Sözlük + düzenleme mesafesi | 0,5340 | 0,000588 | 0,042 |
-| TF-IDF + lojistik regresyon | 0,7214 | 1,028072 | 0,184 |
+| Ödevdeki teknik alan | Uygulamadaki karşılığı |
+|---|---|
+| A · Sinir ağları | Eğitim mesajlarından öğrenilen Word2Vec vektörleri ve 64 gizli nöronlu sınıflandırıcı. |
+| B · Klasik NLP | Türkçe metin normalizasyonu, düzenleme mesafeli sözlük ve TF-IDF + lojistik regresyon. |
+| C · Transformer | Türkçe WordPiece tokenizer ve iki sınıflı görev için ince ayarlı, 12 katmanlı BERTurk. |
+| D · Verimli modeller | Seçilen BERTurk modelinin INT8’e dönüştürülmesi, CPU ölçümü ve sohbet ekranında çalıştırılması. |
 
-Apple M4 üzerinde iki yöntem için aynı 200 tek-mesaj çağrısı ölçüldü. Testteki 716 saldırgan mesajın 70’ini sözlük, 422’sini TF-IDF yakaladı. Normal mesajlarda yanlış alarm sayısı sırasıyla 18 ve 365 oldu.
+## Veri bölümü ve sınırlamalar
 
-### Üç modelin aynı CPU'da karşılaştırması
+Kaynak eğitim bölümünde 31.756 mesaj vardı. Boşluk ve Unicode normalizasyonuyla saptanan dokuz tekrar ile resmî testte de bulunan iki eğitim kaydı çıkarıldı. Sınıf oranları korunarak 28.571 eğitim ve 3.174 doğrulama mesajı ayrıldı. Resmî test kümesindeki 3.528 mesajın tamamı korundu. İlk çalıştırmada kaynaklar OffensEval dağıtımının bir aynasından alındı. `data_prep.py` varsayılan olarak yazarın sunduğu ZIP’i indirir. Yerel arşivle çalışmak için `python data_prep.py --archive offenseval2020-turkish.zip` kullanılabilir. [Kullanılan ayna](https://github.com/vidhur2k/Multilngual-Hate-Speech)
 
-`evaluate_neural.py` üç modeli de yeniden yükleyip aynı 3.528 test mesajında ölçer. Aşağıdaki 200 tek-mesajlık süre ölçümü Linux üzerinde AMD EPYC 9V74 işlemcide yapıldı. Paket sürümleri ve model dosyalarının SHA-256 değerleri `results/neural_test.json`, tam tablo `results/comparison_test.csv` içindedir. Sen kendi Mac'inde bu komutu çalıştırdığında yeni süre ve donanım bilgileri yazılır.
+Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu ve 0,46 eşiği doğrulamada seçildi. Kelime vektörlerini ortalamak sözcük sırasını kaybettirir. BERTurk bağlamı kullanabiliyor, ancak canlı örnekte görüldüğü gibi eleştiri ve hakareti karıştırabiliyor. Test kümesi Twitter mesajlarından oluşuyor. Oyun sohbetlerinde başarımı ölçmek için o alandan etiketli bir test kümesi gerekir.
 
-| Model | Test macro-F1 | Boyut (MB) | Ortalama süre (ms) | Yakalanan saldırgan mesaj (/716) | Yanlış alarm (/2812) |
-|---|---:|---:|---:|---:|---:|
-| Sözlük | 0,5340 | 0,000588 | 0,115 | 70 | 18 |
-| TF-IDF + lojistik regresyon | 0,7214 | 1,028072 | 0,415 | 422 | 365 |
-| Word2Vec + sinir ağı | 0,6330 | 5,412562 | 0,095 | 305 | 439 |
+## İki dakikalık demo akışı
 
-Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu ve 0,46 eşiği doğrulamada seçildi (macro-F1 0,6473). Testte TF-IDF hem daha çok saldırgan mesajı yakaladı hem de daha az yanlış alarm verdi. Kelime vektörlerinin ortalaması sözcük sırasını korumaz. Bu, özellikle alıntı ve eleştiri içeren cümleleri incelerken tartışılabilecek bir sınırlamadır.
+| Zaman | Ekranda gösterilecek işlem |
+|---|---|
+| 0:00–0:15 | Sohbeti açın. INT8’in seçili olduğunu ve CPU hedefinin 50 ms olduğunu gösterin. |
+| 0:15–0:45 | Normal mesajı ve doğrudan hakareti sırayla gönderin. Maskeleme, saldırganlık olasılığı ve süre kaydını gösterin. |
+| 0:45–1:15 | “Ona aptal demen hiç hoş değil.” mesajını önce INT8, sonra TF-IDF ile gönderin. Yanlış alarmın kullanıcıya etkisini açıklayın. |
+| 1:15–1:45 | Beş modelin tablosunu açın. INT8’in boyutunu, ortalama süresini ve yakaladığı 420 saldırgan mesajı gösterin. |
+| 1:45–1:55 | Test verisinin kaynağını ve oyun sohbetlerine genelleme sınırlamasını söyleyin. |
 
-## Sonraki aşamalar
-
-| Aşama | Yapılacak iş | Tamamlandığını nasıl kontrol ederim? |
-|---|---|---|
-| Transformer | BERTurk’ü ikili sınıflandırma için eğitim kümesinde ince ayardan geçir. Model seçimini doğrulamada yap. | Dördüncü satırı ve açıklayabileceğin bir hata örneğini elde et. |
-| Kuantizasyon | İnce ayarlı modeli CPU için INT8’e dönüştür. Hedef gecikmeyi kıyaslamadan önce belirle. | Beşinci satırı ölç. INT8 modelini uygulama menüsüne ekle ve gerçek mesajlarla hedefi kontrol et. |
-| Teslim | 8–12 slaytlık PDF, sesli ve en fazla iki dakikalık demo, kurulum adımları olan GitHub/GitLab deposu. | İlk slaytta iki bağlantıyı, teknik haritayı, gerçek mimariyi, AI kullanım slaydını ve erişim izinlerini kontrol et. |
-
-Sunumda kendi çalıştırmandan aldığın ölçümleri kullan. Gerçek hata örneğini model çıktısıyla birlikte sakla. Etiketli kaynak Twitter mesajlarından oluştuğu için oyun sohbetlerine ne kadar genellenebildiğini sonuçları yorumlarken dikkate al.
+Teslim için 8–12 slaytlık PDF ve sesli ekran kaydı hazırlanır. İlk slayta depo ve video bağlantıları eklenir. Depo özel olduğundan, teslimden önce değerlendirecek kişinin erişimini doğrulayın.
 
 ## Veri ve atıf
 

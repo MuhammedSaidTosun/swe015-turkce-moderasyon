@@ -59,6 +59,8 @@ python train_bert.py
 python evaluate_all.py
 ```
 
+Hazır modellerle yalnızca sonuçları tekrarlamak için veri hazırlama adımından sonra `python evaluate_all.py` yeterlidir. FP32 ve INT8’i aynı ONNX motorunda kıyaslamak için `python compare_ort_validation.py` çalıştırılır. `train_bert.py`, seçilen FP32 modelinin ONNX INT8 sürümünü de üretir. Elinizde hazır FP32 ağırlıkları varken yalnız dönüşümü tekrarlamak için `python export_bert_onnx.py artifacts/bert_fp32 /tmp/berturk-int8-yeni` kullanılabilir. Hedef dizin boşta olmalıdır.
+
 Eğitim, TF-IDF sözlüğünü eğitim mesajlarından çıkarır. Lojistik regresyonun `C` değerini doğrulama kümesindeki macro-F1 ile seçer. `data/processed/test.csv` tüm modeller için ortak test dosyasıdır. Model veya eşik geliştirirken `python train_classical.py --eval-split validation` kullanın.
 
 Word2Vec, eğitim mesajlarında bir kelimenin sağındaki ve solundaki en fazla üçer kelimeden ortadaki kelimeyi tahmin etmeyi öğrenir (CBOW, beş negatif örnek). En az iki kez görülen kelimeler 48 boyutlu vektörlerle temsil edilir. Sınıflandırıcı bir mesajdaki bilinen kelimelerin vektörlerini ortalar, eğitim kümesinin istatistikleriyle standartlaştırır ve 64 ReLU nöronundan geçirir. Sinir ağı mini-batch SGD ve geri yayılımla eğitilir. Eğitim turu ve karar eşiği doğrulama macro-F1 değerine göre seçilir. `results/neural_training.json` eğitim kaydını içerir.
@@ -102,7 +104,7 @@ Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu
 
 | Zaman | Ekranda gösterilecek işlem |
 |---|---|
-| 0:00–0:15 | Sohbeti açın. INT8’in seçili olduğunu ve CPU hedefinin 50 ms olduğunu gösterin. |
+| 0:00–0:15 | Sohbeti açın ve seçili INT8 modelini gösterin. CPU hedefinin mesaj başına ortalama 50 ms olduğunu söyleyin. |
 | 0:15–0:45 | Normal mesajı ve doğrudan hakareti sırayla gönderin. Maskeleme, saldırganlık olasılığı ve süre kaydını gösterin. |
 | 0:45–1:15 | “Ona aptal demen hiç hoş değil.” mesajını önce INT8, sonra TF-IDF ile gönderin. Yanlış alarmın kullanıcıya etkisini açıklayın. |
 | 1:15–1:45 | Beş modelin tablosunu açın. INT8’in boyutunu, ortalama süresini ve yakaladığı 420 saldırgan mesajı gösterin. |

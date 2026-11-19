@@ -21,11 +21,11 @@ ARTIFACTS = ROOT / "artifacts"
 MODEL_MENU = {
     "bert_int8": ("BERTurk · INT8", "BERTurk INT8", "bert_int8/moderation.json"),
     "bert_fp32": ("BERTurk · FP32", "BERTurk FP32", "bert_fp32/moderation.json"),
-    "tfidf": ("TF-IDF + lojistik regresyon", "TF-IDF", "tfidf.joblib"),
-    "rules": ("Sözlük + düzenleme mesafesi", "Sözlük", "rules.json"),
-    "neural": ("Word2Vec + sinir ağı", "Word2Vec", "neural.npz"),
+    "tfidf": ("TF-IDF + logistic regression", "TF-IDF", "tfidf.joblib"),
+    "rules": ("Word list + edit distance", "Word list", "rules.json"),
+    "neural": ("Word2Vec + neural network", "Word2Vec", "neural.npz"),
 }
-app = FastAPI(title="Türkçe sohbet moderasyonu")
+app = FastAPI(title="Turkish Chat Moderation")
 
 
 class ChatInput(BaseModel):
@@ -51,7 +51,7 @@ def installed(name):
 def get_predictor(name):
     if name.startswith("bert_"):
         if not installed(name):
-            raise HTTPException(503, "Transformer bağımlılıkları ve model dosyaları gerekli.")
+            raise HTTPException(503, "Install the Transformer dependencies and model files.")
         import torch
         from bert_model import load_deployed_bert, CPU_THREADS
 
@@ -76,19 +76,19 @@ def index():
 def predict(message: ChatInput):
     text = message.text.strip()
     if not text:
-        raise HTTPException(422, "Bir mesaj yazın.")
+        raise HTTPException(422, "Enter a Turkish message.")
     try:
         predictor = get_predictor(message.model)
     except FileNotFoundError:
         script = "train_neural.py" if message.model == "neural" else "train_classical.py"
-        raise HTTPException(503, f"Model dosyası bulunamadı. Önce python {script} komutunu çalıştırın.") from None
+        raise HTTPException(503, f"Model file missing. Run python {script} first.") from None
     start = perf_counter_ns()
     label, confidence = predictor.predict_one(text)
     latency_ms = (perf_counter_ns() - start) / 1_000_000
     flagged = bool(label)
     result = {
         "model": message.model,
-        "text": "Mesaj maskelendi" if flagged else text,
+        "text": "Message hidden" if flagged else text,
         "flagged": flagged,
         "confidence": confidence,
         "score_kind": predictor.score_kind,

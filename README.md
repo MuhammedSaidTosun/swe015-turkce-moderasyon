@@ -2,7 +2,9 @@
 
 Türkçe sohbet mesajlarını beş yöntemle karşılaştıran SWE015 uygulaması. Tam kurulumda varsayılan model, saldırgan dil tespiti için ince ayar yapılmış BERTurk’ün INT8 sürümüdür. Kullanıcı modeli değiştirebilir. Saldırgan olarak işaretlenen mesaj maskelenir. Yan panelde mesaj başına CPU tahmin süresi ve tarayıcının yanıtı beklediği toplam süre gösterilir.
 
-On slaytlık sunumda mimari, teknik harita, sonuç tablosu, bağlam hatası ve AI kullanım açıklaması yer alır. Teslimden önce kapaktaki öğrenci numarası ve video bağlantısı tamamlanır. [Sunumu PDF olarak aç](docs/SWE015_Turkce_Moderasyon_Sunum.pdf) · [Düzenlenebilir PowerPoint](docs/SWE015_Turkce_Moderasyon_Sunum.pptx)
+Arayüz ve 10 slaytlık sunum İngilizcedir. Model Türkçe mesajları sınıflandırır. İngilizce PowerPoint’in her slaydında konuşmacı notları vardır. Prova kılavuzunun ilk sayfasında iki dakikalık video için ekranda yapılacaklar ve okunacak İngilizce cümleler, sonraki sayfalarda her slaydın tam konuşma metni, Türkçe açıklamalar ve telaffuz yardımı bulunur. Kapağa teslimden önce öğrenci numarası ve video bağlantısı eklenir.
+
+[İngilizce sunum PDF’si](docs/SWE015_Turkce_Moderasyon_Sunum.pdf) · [İngilizce PowerPoint ve konuşmacı notları](docs/SWE015_Turkce_Moderasyon_Sunum.pptx) · [Türkçe yönlendirmeli İngilizce konuşma kılavuzu](docs/SWE015_Speaking_Guide.pdf)
 
 ## Mac’te demoyu açma
 
@@ -106,11 +108,12 @@ Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu
 
 | Zaman | Ekranda gösterilecek işlem |
 |---|---|
-| 0:00–0:15 | Sohbeti açın ve seçili INT8 modelini gösterin. CPU hedefinin mesaj başına ortalama 50 ms olduğunu söyleyin. |
-| 0:15–0:45 | Normal mesajı ve doğrudan hakareti sırayla gönderin. Maskeleme, saldırganlık olasılığı ve süre kaydını gösterin. |
-| 0:45–1:15 | “Ona aptal demen hiç hoş değil.” mesajını önce INT8, sonra TF-IDF ile gönderin. Yanlış alarmın kullanıcıya etkisini açıklayın. |
-| 1:15–1:45 | Beş modelin tablosunu açın. INT8’in boyutunu, ortalama süresini ve yakaladığı 420 saldırgan mesajı gösterin. |
-| 1:45–1:55 | Test verisinin kaynağını ve oyun sohbetlerine genelleme sınırlamasını söyleyin. |
+| 0:00–0:12 | BERTurk INT8’i gösterin ve 50 ms hedefini söyleyin. |
+| 0:12–0:30 | “Herkese iyi oyunlar!” gönderip **Clean** etiketini gösterin. |
+| 0:30–0:48 | “Sen bir aptalsın.” gönderip **Message hidden** yazısına ve sağdaki sürelere işaret edin. |
+| 0:48–1:06 | “Ona aptal demen hiç hoş değil.” gönderin. Modelin hakareti eleştiren bir mesajı da gizlediğini açıklayın. |
+| 1:06–1:25 | İngilizce PDF’de 4. slaydı açın. Tarayıcıdan sunucuya ve modele giden yolu gösterin. |
+| 1:25–1:50 | 7. slaytta iki BERTurk satırını gösterin. INT8’in makro F1 puanını ve ortalama CPU süresini söyleyin. |
 
 Sesli kaydı en fazla iki dakika olacak şekilde tamamlayın. Video bağlantısını ve öğrenci numarasını düzenlenebilir sunumun ilk slaydına ekleyip PDF’yi yeniden dışa aktarın. Teslimden önce değerlendirecek kişinin özel depoya ve videoya erişebildiğini doğrulayın.
 

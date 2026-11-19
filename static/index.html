@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Türkçe sohbet moderasyonu</title>
+  <title>Turkish Chat Moderation</title>
   <style>
     :root { color-scheme: light; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #151f2c; background: #f3f4f2; }
     * { box-sizing: border-box; }
@@ -42,26 +42,26 @@
 </head>
 <body>
 <main>
-  <h1>Türkçe sohbet moderasyonu</h1>
+  <h1>Turkish Chat Moderation</h1>
   <div class="layout">
-    <section class="card" aria-label="Sohbet">
-      <div class="head"><h2>Sohbet</h2><button class="clear" id="clear" disabled>Temizle</button></div>
-      <div id="messages" class="log" role="log" aria-live="polite"><p class="empty">İlk mesajını yazarak modeli dene.</p></div>
-      <form id="composer">
-        <label for="text">Mesajın</label>
-        <textarea id="text" maxlength="1500" required placeholder="Bu oyunun son güncellemesi çok kötü."></textarea>
+    <section class="card" aria-label="Chat">
+      <div class="head"><h2>Chat</h2><button class="clear" id="clear" disabled>Clear chat</button></div>
+      <div id="messages" class="log" role="log" aria-live="polite"><p class="empty">Send a Turkish message to see how the model classifies it.</p></div>
+      <form id="composer" novalidate>
+        <label for="text">Your message</label>
+        <textarea id="text" maxlength="1500" required placeholder="Type a message in Turkish…"></textarea>
         <p role="alert" id="error" hidden></p>
-        <button class="send" id="send">Gönder</button>
+        <button class="send" id="send">Send</button>
       </form>
     </section>
     <aside class="card panel">
-      <label for="model">Moderasyon modeli</label>
+      <label for="model">Moderation model</label>
       <select id="model">
         <!-- MODEL_OPTIONS -->
       </select>
-      <h2>Yanıt ve CPU süreleri</h2>
-      <p id="no-times" class="empty">Her mesajın toplam yanıt ve CPU tahmin süresi burada görünür.</p>
-      <ol id="times" aria-label="Mesaj bazında yanıt ve CPU süreleri"></ol>
+      <h2>Response and CPU times</h2>
+      <p id="no-times" class="empty">Each message shows the total response time and the time spent on CPU inference.</p>
+      <ol id="times" aria-label="Response and CPU times for each message"></ol>
     </aside>
   </div>
 </main>
@@ -69,8 +69,8 @@
   const el = id => document.getElementById(id);
   const modelNames = Object.fromEntries(Array.from(el("model").options, option =>
     [option.value, option.dataset.short]));
-  const percent = new Intl.NumberFormat("tr", { style: "percent", maximumFractionDigits: 1 });
-  const duration = new Intl.NumberFormat("tr", { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+  const percent = new Intl.NumberFormat("en-US", { style: "percent", maximumFractionDigits: 1 });
+  const duration = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 3 });
   let count = 0;
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
@@ -82,13 +82,13 @@
     if (!count) el("messages").replaceChildren();
     count++;
     const message = element("article", "", result.flagged ? "message flag" : "message");
-    const scoreName = result.score_kind === "heuristic" ? "Sezgisel skor" : "Model güveni";
+    const scoreName = result.score_kind === "heuristic" ? "Rule score" : "Model confidence";
     let score = scoreName + " " + percent.format(result.confidence);
     if (typeof result.decision_threshold === "number") {
-      score += " · Saldırganlık olasılığı " + percent.format(result.offensive_probability)
-        + " (eşik " + percent.format(result.decision_threshold) + ")";
+      score += " · Offensive probability " + percent.format(result.offensive_probability)
+        + " (threshold " + percent.format(result.decision_threshold) + ")";
     }
-    const label = result.flagged ? "Saldırgan" : "Normal";
+    const label = result.flagged ? "Offensive" : "Clean";
     message.append(element("p", result.text),
       element("span", "#" + count + " · " + label + " · " + score, "meta"));
     el("messages").append(message);
@@ -103,7 +103,7 @@
   }
   function reset() {
     count = 0;
-    el("messages").replaceChildren(element("p", "İlk mesajını yazarak modeli dene.", "empty"));
+    el("messages").replaceChildren(element("p", "Send a Turkish message to see how the model classifies it.", "empty"));
     el("times").replaceChildren();
     el("no-times").hidden = false;
     el("clear").disabled = true;
@@ -114,10 +114,16 @@
     event.preventDefault();
     const input = el("text");
     const text = input.value.trim();
-    if (!text || el("send").disabled) return;
+    if (el("send").disabled) return;
+    if (!text) {
+      el("error").textContent = "Enter a Turkish message.";
+      el("error").hidden = false;
+      input.focus();
+      return;
+    }
     el("error").hidden = true;
     el("send").disabled = true;
-    el("send").textContent = "İşleniyor…";
+    el("send").textContent = "Checking…";
     input.readOnly = true;
     el("clear").disabled = true;
     try {
@@ -126,18 +132,19 @@
         body: JSON.stringify({ model: el("model").value, text }) });
       if (!response.ok) {
         const body = await response.json();
-        throw new Error(typeof body.detail === "string" ? body.detail : "Mesaj işlenemedi.");
+        throw new Error(typeof body.detail === "string" ? body.detail : "Could not process this message.");
       }
       const result = await response.json();
       const responseMs = performance.now() - started;
       input.value = "";
       render(result, responseMs);
     } catch (error) {
-      el("error").textContent = error.message || "Uygulamaya ulaşılamadı.";
+      el("error").textContent = error instanceof TypeError ? "Could not reach the app." :
+        (error.message || "Could not process this message.");
       el("error").hidden = false;
     } finally {
       el("send").disabled = false;
-      el("send").textContent = "Gönder";
+      el("send").textContent = "Send";
       input.readOnly = false;
       el("clear").disabled = count === 0;
       input.focus();

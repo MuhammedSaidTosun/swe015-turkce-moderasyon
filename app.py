@@ -47,8 +47,14 @@ def installed(name):
     return marker.is_file()
 
 
+@lru_cache(maxsize=1)
+def load_neural_revision(path, inode, modified_ns, size):
+    """Reload the trained artifact when training or a checkout replaces it."""
+    return NeuralModerator(path)
+
+
 @lru_cache(maxsize=len(MODEL_MENU))
-def get_predictor(name):
+def get_static_predictor(name):
     if name.startswith("bert_"):
         if not installed(name):
             raise HTTPException(503, "Install the Transformer dependencies and model files.")
@@ -57,9 +63,15 @@ def get_predictor(name):
 
         torch.set_num_threads(CPU_THREADS)
         return load_deployed_bert(ARTIFACTS / name)
-    if name == "neural":
-        return NeuralModerator(ARTIFACTS / "neural.npz")
     return load_model(name, ARTIFACTS)
+
+
+def get_predictor(name):
+    if name == "neural":
+        path = ARTIFACTS / "neural.npz"
+        revision = path.stat()
+        return load_neural_revision(path, revision.st_ino, revision.st_mtime_ns, revision.st_size)
+    return get_static_predictor(name)
 
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)

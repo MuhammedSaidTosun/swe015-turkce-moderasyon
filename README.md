@@ -39,17 +39,19 @@ OffensEval-TR resmî test kümesindeki 3.528 mesajın 716’sı saldırgan, 2.81
 
 INT8 paketi FP32’ye göre %74,6 daha küçük. INT8 tahminlerinin 95. yüzdeliği 15,33 ms, en yavaş tahmin 16,51 ms idi. Bu 200 ölçümde 50 ms’yi aşan tahmin olmadı. İlk PyTorch INT8 denemesi ise aynı cihazda ortalama 55,83 ms sürdü. Son sürümde çıkarım motoru da değişti. Etkiyi aynı motorla kontrol ettiğimizde ONNX Runtime, doğrulamadan seçilen aynı 200 mesajda FP32 için 12,09 ms, INT8 için 9,25 ms verdi. [İlk INT8 ölçümü](results/five_model_test_1thread.csv) · [Aynı çıkarım motoruyla karşılaştırma](results/ort_paired_validation.json)
 
-## Sohbette denenebilecek üç mesaj
+## Canlı demoda aynı mesajla beş model
 
-Varsayılan BERTurk INT8 modelinin gerçek API çıktıları aşağıdadır. Karar eşiği %62. Sohbet ekranında seçili sınıfa güven ile saldırganlık olasılığının ayrı anlamları vardır.
+BERTurk INT8, `Sen bir aptalsın` mesajına %91,8 saldırganlık olasılığı verir ve mesajı gizler. Karşılaştırma için `Ona aptal demen hiç hoş değil` cümlesini **sonuna nokta eklemeden** gönderin. Her model değişikliğinden sonra aynı metni tekrar gönderin.
 
-| Yazılan mesaj | Saldırganlık olasılığı | Ekrandaki sonuç |
-|---|---:|---|
-| Herkese iyi oyunlar! | %2,95 | Mesaj görünür. |
-| Sen bir aptalsın. | %94,85 | Mesaj maskelenir. |
-| Ona aptal demen hiç hoş değil. | %65,01 | Mesaj maskelenir. Hakareti eleştiren bir kullanıcı için bu bir yanlış alarmdır. |
+| Seçilen model | Noktasız cümlede uygulamanın kararı |
+|---|---|
+| BERTurk · INT8 | Clean · %39,7 saldırganlık olasılığı (%62 eşik) |
+| Word list + edit distance | Offensive · Message hidden |
+| TF-IDF + logistic regression | Clean |
+| Word2Vec + neural network | Offensive · Message hidden |
+| BERTurk · FP32 | Clean · %56,6 saldırganlık olasılığı (%62 eşik) |
 
-Son cümleyi TF-IDF ile tekrar gönderin. TF-IDF cümleyi normal sayar. Bu örnekler canlı demo için yazıldı. Test puanları resmî veri kümesinden hesaplandı.
+Cümlede konuşan kişi hakarete karşı çıkıyor. Bu örnekte sözlüğün ve Word2Vec modelinin verdiği Offensive kararı birer yanlış alarm. Cümlenin sonuna nokta eklenirse BERTurk INT8 skoru %65,0’a çıkar ve mesaj bu kez gizlenir. Yukarıdaki kararlar uygulamanın yerel API’sinde ölçüldü. 3.528 mesaj üzerindeki test sonuçları ayrı bir değerlendirmedir.
 
 ## Eğitimi ve ölçümü tekrarlama
 
@@ -108,12 +110,13 @@ Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu
 
 | Zaman | Ekranda gösterilecek işlem |
 |---|---|
-| 0:00–0:12 | BERTurk INT8’i gösterin ve 50 ms hedefini söyleyin. |
-| 0:12–0:30 | “Herkese iyi oyunlar!” gönderip **Clean** etiketini gösterin. |
-| 0:30–0:48 | “Sen bir aptalsın.” gönderip **Message hidden** yazısına ve sağdaki sürelere işaret edin. |
-| 0:48–1:06 | “Ona aptal demen hiç hoş değil.” gönderin. Modelin hakareti eleştiren bir mesajı da gizlediğini açıklayın. |
-| 1:06–1:25 | İngilizce PDF’de 4. slaydı açın. Tarayıcıdan sunucuya ve modele giden yolu gösterin. |
-| 1:25–1:50 | 7. slaytta iki BERTurk satırını gösterin. INT8’in makro F1 puanını ve ortalama CPU süresini söyleyin. |
+| 0:00–0:17 | Kapakta adını ve seçtiğin projeyi söyle. |
+| 0:17–0:31 | Helium’da Sen bir aptalsın yazıp gönder. Message hidden yazısını göster. |
+| 0:31–0:50 | Ona aptal demen hiç hoş değil yaz. Nokta koyma. Metni kopyala ve gönder. |
+| 0:50–1:04 | Menüden Word list seç. Kopyaladığın noktasız cümleyi yapıştır ve gönder. |
+| 1:04–1:30 | Sırayla her modeli seç, aynı metni yapıştır ve Send’e bas. Sağdaki model adlarını göster. |
+| 1:30–1:42 | Şemada tarayıcıyı, sunucuyu ve seçilen modeli göster. |
+| 1:42–1:56 | Tabloda iki BERTurk satırını göster. Teşekkür edip kaydı durdur. |
 
 Sesli kaydı en fazla iki dakika olacak şekilde tamamlayın. Video bağlantısını ve öğrenci numarasını düzenlenebilir sunumun ilk slaydına ekleyip PDF’yi yeniden dışa aktarın. Teslimden önce değerlendirecek kişinin özel depoya ve videoya erişebildiğini doğrulayın.
 

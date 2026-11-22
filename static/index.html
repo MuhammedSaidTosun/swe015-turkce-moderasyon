@@ -29,6 +29,11 @@
     textarea, select { border: 1px solid #aab9b4; border-radius: 8px; color: #182823; background: white; }
     textarea { width: 100%; resize: vertical; padding: 12px; min-height: 78px; }
     .send { display: block; margin: 10px 0 0 auto; padding: 9px 22px; color: white; font-weight: 650; border: 0; border-radius: 8px; background: #185447; }
+    .examples { min-inline-size: 0; margin: 18px 0 0; padding: 0; border: 0; }
+    .examples legend { padding: 0; margin-bottom: 8px; font-size: .88rem; font-weight: 650; }
+    .example-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .example-list button { padding: 6px 10px; border: 1px solid #bdcec6; border-radius: 8px; background: #f4f8f5; color: #234b40; text-align: start; }
+    .example-list button:enabled:hover { background: #e5f0e9; border-color: #729685; }
     .panel { padding: 20px; }
     select { width: 100%; padding: 10px 6px; }
     .panel h2 { margin: 24px 0 0; border-top: 1px solid #e6e9e8; padding-top: 18px; }
@@ -52,6 +57,14 @@
         <textarea id="text" maxlength="1500" required placeholder="Type a message in Turkish…"></textarea>
         <p role="alert" id="error" hidden></p>
         <button class="send" id="send">Send</button>
+        <fieldset class="examples" id="examples">
+          <legend>Examples</legend>
+          <div class="example-list" lang="tr">
+            <button type="submit" name="example">Herkese iyi oyunlar!</button>
+            <button type="submit" name="example">Sen bir aptalsın</button>
+            <button type="submit" name="example">Ona aptal demen hiç hoş değil</button>
+          </div>
+        </fieldset>
       </form>
     </section>
     <aside class="card panel">
@@ -113,8 +126,9 @@
   el("composer").addEventListener("submit", async event => {
     event.preventDefault();
     const input = el("text");
-    const text = input.value.trim();
     if (el("send").disabled) return;
+    const example = event.submitter?.name === "example" ? event.submitter : null;
+    const text = (example ? example.textContent : input.value).trim();
     if (!text) {
       el("error").textContent = "Enter a Turkish message.";
       el("error").hidden = false;
@@ -123,6 +137,7 @@
     }
     el("error").hidden = true;
     el("send").disabled = true;
+    el("examples").disabled = true;
     el("send").textContent = "Checking…";
     input.readOnly = true;
     el("clear").disabled = true;
@@ -136,7 +151,7 @@
       }
       const result = await response.json();
       const responseMs = performance.now() - started;
-      input.value = "";
+      if (!example) input.value = "";
       render(result, responseMs);
     } catch (error) {
       el("error").textContent = error instanceof TypeError ? "Could not reach the app." :
@@ -144,10 +159,12 @@
       el("error").hidden = false;
     } finally {
       el("send").disabled = false;
+      el("examples").disabled = false;
       el("send").textContent = "Send";
       input.readOnly = false;
       el("clear").disabled = count === 0;
-      input.focus();
+      if (!example) input.focus();
+      else if (document.activeElement === document.body) example.focus({ preventScroll: true });
     }
   });
   el("text").addEventListener("keydown", event => {

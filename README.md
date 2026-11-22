@@ -31,7 +31,7 @@ OffensEval-TR resmî test kümesindeki 3.528 mesajın 716’sı saldırgan, 2.81
 |---|---:|---:|---:|---:|---:|
 | Sözlük + düzenleme mesafesi | 0,5340 | 0,000588 | 0,052 | 70 | 18 |
 | TF-IDF + lojistik regresyon | 0,7214 | 1,028 | 0,189 | 422 | 365 |
-| Word2Vec + sinir ağı | 0,6330 | 5,413 | 0,031 | 305 | 439 |
+| Word2Vec + sinir ağı | 0,7644 | 8,311 | 0,083 | 409 | 200 |
 | BERTurk FP32 · PyTorch | 0,7817 | 443,31 | 13,876 | 421 | 170 |
 | **BERTurk INT8 · ONNX Runtime** | **0,7838** | **112,55** | **9,009** | **420** | **162** |
 
@@ -48,10 +48,10 @@ BERTurk INT8, `Sen bir aptalsın` mesajına %91,8 saldırganlık olasılığı v
 | BERTurk · INT8 | Clean · %39,7 saldırganlık olasılığı (%62 eşik) |
 | Word list + edit distance | Offensive · Message hidden |
 | TF-IDF + logistic regression | Clean |
-| Word2Vec + neural network | Offensive · Message hidden |
+| Word2Vec + neural network | Clean · %3,2 saldırganlık skoru (%53 eşik) |
 | BERTurk · FP32 | Clean · %56,6 saldırganlık olasılığı (%62 eşik) |
 
-Cümlede konuşan kişi hakarete karşı çıkıyor. Bu örnekte sözlüğün ve Word2Vec modelinin verdiği Offensive kararı birer yanlış alarm. Cümlenin sonuna nokta eklenirse BERTurk INT8 skoru %65,0’a çıkar ve mesaj bu kez gizlenir. Yukarıdaki kararlar uygulamanın yerel API’sinde ölçüldü. 3.528 mesaj üzerindeki test sonuçları ayrı bir değerlendirmedir.
+Cümlede konuşan kişi hakarete karşı çıkıyor. Bu örnekte sözlük yanlış alarm verdi. Yeniden eğitilen Word2Vec modeli cümleyi görünür bıraktı. Cümlenin sonuna nokta eklenirse BERTurk INT8 skoru %65,0’a çıkar ve mesaj bu kez gizlenir. Yukarıdaki kararlar uygulamanın yerel API’sinde ölçüldü. 3.528 mesaj üzerindeki test sonuçları ayrı bir değerlendirmedir.
 
 ## Eğitimi ve ölçümü tekrarlama
 
@@ -69,7 +69,7 @@ Hazır modellerle yalnızca sonuçları tekrarlamak için veri hazırlama adım�
 
 Eğitim, TF-IDF sözlüğünü eğitim mesajlarından çıkarır. Lojistik regresyonun `C` değerini doğrulama kümesindeki macro-F1 ile seçer. `data/processed/test.csv` tüm modeller için ortak test dosyasıdır. Model veya eşik geliştirirken `python train_classical.py --eval-split validation` kullanın.
 
-Word2Vec, eğitim mesajlarında bir kelimenin sağındaki ve solundaki en fazla üçer kelimeden ortadaki kelimeyi tahmin etmeyi öğrenir (CBOW, beş negatif örnek). En az iki kez görülen kelimeler 48 boyutlu vektörlerle temsil edilir. Sınıflandırıcı bir mesajdaki bilinen kelimelerin vektörlerini ortalar, eğitim kümesinin istatistikleriyle standartlaştırır ve 64 ReLU nöronundan geçirir. Sinir ağı mini-batch SGD ve geri yayılımla eğitilir. Eğitim turu ve karar eşiği doğrulama macro-F1 değerine göre seçilir. `results/neural_training.json` eğitim kaydını içerir.
+Word2Vec, eğitim mesajlarında bir kelimenin sağındaki ve solundaki en fazla üçer kelimeden ortadaki kelimeyi tahmin etmeyi öğrenir (CBOW, beş negatif örnek). En az iki kez görülen kelimeler 48 boyutlu vektörlerle temsil edilir. Sınıflandırıcı, standartlaştırılmış ortalama kelime vektörlerine kelimeleri, sıralı kelime çiftlerini ve 3–4 karakterlik parçaları ekler. 12.000 gösterge eğitim etiketleri ile ki-kare puanına göre seçilir. Özellikler birlikte 64 ReLU nöronuna verilir. Word2Vec, OffensEval eğitim metinlerinden öğrenir. Sınıflandırıcı için bunlara 744 dengeli, proje için yazılmış sentetik sohbet mesajı eklenir. Sinir ağı mini-batch SGD ve geri yayılımla eğitilir. Eğitim turu ve karar eşiği doğrulama macro-F1 değerine göre seçilir. `results/neural_training.json` eğitim kaydını içerir.
 
 BERTurk için başlangıç noktası, `dbmdz/bert-base-turkish-cased` modelinin `b6e1de16c983e0f2c70664591ea3f22810072608` sürümüdür. Büyük ve küçük harf korunur. Eğitim maliyetini Mac CPU’suna uygun tutmak için sabit tohumla sınıf oranlarını koruyan 12.288 eğitim örneği kullanılır. On iki encoder bloğunun tamamı çıkarımda çalışır. Eğitim sırasında kelime gömmeleri ve ilk on blok sabittir. Son iki blok, pooler ve iki sınıflı çıkış katmanı güncellenir. İki tur boyunca en fazla 48 token, 24 mesajlık batch ve AdamW ile 0,00004 öğrenme hızı kullanılır. Tur ve sınıflandırma eşiği, 3.174 doğrulama mesajında macro-F1 ile seçilir. İkinci tur doğrulamada 0,79195 macro-F1 ile seçildi. FP32 ve INT8 aynı 0,62 karar eşiğini kullanır. Tam eğitim, doğrulama ve ilk dışa aktarma Apple M4 CPU üzerinde 350 saniye sürdü. Dağıtılan INT8 sürümünde ONNX Runtime kullanılır. Doğrusal katmanların ağırlıkları kanal başına işaretli INT8 olarak, üç gömme tablosu ise tablo başına işaretsiz 8 bit olarak saklanır. Dinamik giriş kuantizasyonu çalışma sırasında yapılır. [BERTurk model kartı](https://huggingface.co/dbmdz/bert-base-turkish-cased)
 
@@ -104,19 +104,18 @@ flowchart TD
 
 Kaynak eğitim bölümünde 31.756 mesaj vardı. Boşluk ve Unicode normalizasyonuyla saptanan dokuz tekrar ile resmî testte de bulunan iki eğitim kaydı çıkarıldı. Sınıf oranları korunarak 28.571 eğitim ve 3.174 doğrulama mesajı ayrıldı. Resmî test kümesindeki 3.528 mesajın tamamı korundu. İlk çalıştırmada kaynaklar OffensEval dağıtımının bir aynasından alındı. `data_prep.py` varsayılan olarak yazarın sunduğu ZIP’i indirir. Yerel arşivle çalışmak için `python data_prep.py --archive offenseval2020-turkish.zip` kullanılabilir. [Kullanılan ayna](https://github.com/vidhur2k/Multilngual-Hate-Speech)
 
-Word2Vec 29.211 kelime için vektör öğrendi. Sinir ağının 19. eğitim turu ve 0,46 eşiği doğrulamada seçildi. Kelime vektörlerini ortalamak sözcük sırasını kaybettirir. BERTurk bağlamı kullanabiliyor, ancak canlı örnekte görüldüğü gibi eleştiri ve hakareti karıştırabiliyor. Test kümesi Twitter mesajlarından oluşuyor. Oyun sohbetlerinde başarımı ölçmek için o alandan etiketli bir test kümesi gerekir.
+Word2Vec 29.211 kelime için vektör öğrendi. Güncellenen sinir ağında 14. eğitim turu ve 0,53 eşiği OffensEval doğrulama kümesinde seçildi. Aynı resmî testte eski model 411 hakareti kaçırıp 439 yanlış alarm verdi; yenisinde bu sayılar 307 ve 200 oldu. Geliştirmeden önce ayrılan 40 sentetik oyun sohbeti kontrolünde eski model 24, yenisi 39 doğru karar verdi. Bu küçük kontrol gerçek oyuncu trafiği performansını ölçmez. [Karşılaştırma ve üç demo çıktısı](results/neural_retraining.json). BERTurk bağlamı kullanabiliyor, ancak canlı örnekte görüldüğü gibi eleştiri ve hakareti karıştırabiliyor. Test kümesi Twitter mesajlarından oluşuyor. Oyun sohbetlerinde başarımı ölçmek için o alandan etiketli bir test kümesi gerekir.
 
 ## İki dakikalık demo akışı
 
 | Zaman | Ekranda gösterilecek işlem |
 |---|---|
-| 0:00–0:17 | Kapakta adını ve seçtiğin projeyi söyle. |
-| 0:17–0:31 | Helium’da Sen bir aptalsın yazıp gönder. Message hidden yazısını göster. |
-| 0:31–0:50 | Ona aptal demen hiç hoş değil yaz. Nokta koyma. Metni kopyala ve gönder. |
-| 0:50–1:04 | Menüden Word list seç. Kopyaladığın noktasız cümleyi yapıştır ve gönder. |
-| 1:04–1:30 | Sırayla her modeli seç, aynı metni yapıştır ve Send’e bas. Sağdaki model adlarını göster. |
-| 1:30–1:42 | Şemada tarayıcıyı, sunucuyu ve seçilen modeli göster. |
-| 1:42–1:56 | Tabloda iki BERTurk satırını göster. Teşekkür edip kaydı durdur. |
+| 0:00–0:15 | Kapakta kendini, Türkçe oyun sohbeti görevini ve CPU hız hedefini tanıt. |
+| 0:15–0:40 | BERTurk INT8 ile “Sen bir aptalsın” yaz. Sonra Examples altında noktasız “Ona aptal demen hiç hoş değil” cümlesini seç. |
+| 0:40–1:05 | Word2Vec + neural network seç. Aynı iki örneği gönder. Bu model de hakareti gizler ve eleştiriyi görünür bırakır. |
+| 1:05–1:15 | Word list seçip eleştiriyi tekrar gönder; sözlüğün verdiği yanlış alarmı göster. |
+| 1:15–1:45 | 4. slaytta mimariyi, 7. slaytta beş modelin ölçülmüş sonuçlarını göster. |
+| 1:45–1:56 | INT8'in küçük boyutunu, test puanını ve 9 ms ortalama CPU süresini özetle. |
 
 Sesli kaydı en fazla iki dakika olacak şekilde tamamlayın. Video bağlantısını ve öğrenci numarasını düzenlenebilir sunumun ilk slaydına ekleyip PDF’yi yeniden dışa aktarın. Teslimden önce değerlendirecek kişinin özel depoya ve videoya erişebildiğini doğrulayın.
 

@@ -19,3 +19,9 @@ Yayımlanmış 31.756 eğitim satırından 2'si testte de yer alıyordu. Eğitim
 | Resmî test | 2.812 | 716 | 3.528 |
 
 Çıktılar `data/processed/train.csv`, `validation.csv` ve `test.csv` dosyalarında UTF-8 olarak yazılır. Her biri `text,label` sütunlarını içerir. `split_summary.json` kaynak ve çıktı dosyalarının SHA-256 özetlerini, sınıf sayılarını ve çıkarılan tekrarları kaydeder.
+
+## Word2Vec sınıflandırıcısına özel sohbet verisi
+
+`neural_chat_train.csv` projeye özel, yapay olarak yazılmış 372 normal ve 372 saldırgan mesaj içerir. Hakareti kullanan ve bir başkasının hakaretini alıntılayan veya eleştiren cümleler de bulunur. Eğitim mesajları 28.571 OffensEval örneğine yalnızca sınıflandırıcı eğitilirken eklenir. Word2Vec vektörleri OffensEval eğitim kümesinden öğrenilir. Resmî doğrulama ve test sayıları aynıdır.
+
+`neural_chat_check.csv` eğitim başlamadan önce yazılan 20 normal ve 20 saldırgan oyun mesajıdır. Bu küçük tanısal kontrol, gerçek oyun mesajlarını temsil eden bağımsız bir başarı tahmini değildir. İki yardımcı dosya ve resmî kümeler arasında normalleştirilmiş birebir tekrara karşı kontrol yapıldı. Sunumdaki üç giriş de eğitim dışında bırakıldı.

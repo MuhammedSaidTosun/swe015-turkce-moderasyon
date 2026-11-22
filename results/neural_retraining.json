@@ -1,0 +1,112 @@
+{
+  "source": "40 individually authored diagnostic messages, balanced; convenience sample, not user traffic. Inputs fixed before retraining. Debugging prompts excluded. The three demo phrases are regression checks, not a blind evaluation.",
+  "test_sha256": "cf42023d63155f16dcf3f3aefa80debce691181324307cac638c877aa927ec32",
+  "diagnostic_sha256": "21401b0d048442580f1fc324eb45539f4e185465275a5591a65b7859a8f5408e",
+  "previous_commit": "df04730",
+  "models": {
+    "previous": {
+      "artifact_sha256": "63bb92f0b18333892dab4413d5e7c15f1f12b1515853aa43234e3e708632cc27",
+      "validation_macro_f1": 0.647276687281114,
+      "official_test": {
+        "macro_f1": 0.6329570045139875,
+        "size_mb": 5.412562,
+        "mean_cpu_latency_ms": 0.031495635,
+        "runs": 200,
+        "offensive_precision": 0.4099462365591398,
+        "offensive_recall": 0.4259776536312849,
+        "tn": 2373,
+        "fp": 439,
+        "fn": 411,
+        "tp": 305,
+        "p95_cpu_latency_ms": 0.063375,
+        "max_cpu_latency_ms": 0.076708,
+        "over_budget_count": 0
+      },
+      "threshold": 0.45999999999999996,
+      "diagnostic": {
+        "correct": 24,
+        "total": 40,
+        "confusion_matrix": [
+          [
+            19,
+            1
+          ],
+          [
+            15,
+            5
+          ]
+        ],
+        "macro_f1": 0.5441595441595442
+      },
+      "demo": [
+        {
+          "text": "Herkese iyi oyunlar!",
+          "offensive_probability": 0.07042747735977173,
+          "flagged": false
+        },
+        {
+          "text": "Sen bir aptalsın",
+          "offensive_probability": 0.21764875948429108,
+          "flagged": false
+        },
+        {
+          "text": "Ona aptal demen hiç hoş değil",
+          "offensive_probability": 0.4639531970024109,
+          "flagged": true
+        }
+      ]
+    },
+    "retrained": {
+      "artifact_sha256": "22997133b6d80cc3818f8295061e11dc34e488ce4516e8bcdc99f9edd10120df",
+      "validation_macro_f1": 0.7668844548427405,
+      "official_test": {
+        "macro_f1": 0.7644461271535476,
+        "size_mb": 8.311054,
+        "mean_cpu_latency_ms": 0.08334415,
+        "runs": 200,
+        "offensive_precision": 0.6715927750410509,
+        "offensive_recall": 0.5712290502793296,
+        "tn": 2612,
+        "fp": 200,
+        "fn": 307,
+        "tp": 409,
+        "p95_cpu_latency_ms": 0.172959,
+        "max_cpu_latency_ms": 0.200583,
+        "over_budget_count": 0
+      },
+      "threshold": 0.53,
+      "diagnostic": {
+        "correct": 39,
+        "total": 40,
+        "confusion_matrix": [
+          [
+            19,
+            1
+          ],
+          [
+            0,
+            20
+          ]
+        ],
+        "macro_f1": 0.9749843652282677
+      },
+      "demo": [
+        {
+          "text": "Herkese iyi oyunlar!",
+          "offensive_probability": 0.037960562855005264,
+          "flagged": false
+        },
+        {
+          "text": "Sen bir aptalsın",
+          "offensive_probability": 0.972260594367981,
+          "flagged": true
+        },
+        {
+          "text": "Ona aptal demen hiç hoş değil",
+          "offensive_probability": 0.03247819468379021,
+          "flagged": false
+        }
+      ]
+    }
+  }
+}

@@ -9,29 +9,29 @@
   "artifact_sha256": {
     "rules.json": "e9500c9900cb6ca3543a673867d321c3edd9ed34cd1907e1ae079ae8a9c1a0e2",
     "tfidf.joblib": "d3ebefb4c643ec418fa149fe5ca0c5d3f860aff636c69403a2b2e0a87d63f560",
-    "neural.npz": "63bb92f0b18333892dab4413d5e7c15f1f12b1515853aa43234e3e708632cc27"
+    "neural.npz": "22997133b6d80cc3818f8295061e11dc34e488ce4516e8bcdc99f9edd10120df"
   },
   "hardware": {
-    "cpu": "AMD EPYC 9V74 80-Core Processor",
-    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
-    "machine": "x86_64"
+    "cpu": "Apple M4",
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "machine": "arm64"
   },
   "runtime": {
-    "python": "3.12.14",
-    "numpy": "2.3.5",
-    "scipy": "1.17.0",
-    "scikit-learn": "1.8.0",
-    "joblib": "1.5.3",
+    "python": "3.12.9",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "joblib": "1.6.0",
     "threadpoolctl": "3.6.0"
   },
-  "latency_protocol": "Batch size 1, one numerical-library thread, predict_one includes preprocessing. Seed 42, same shuffled test messages for each model, 10 warm-ups, wall-clock mean with models already loaded. HTTP and UI time excluded.",
+  "latency_protocol": "Batch size 1, numerical-library threads=1, predict_one includes preprocessing. Seed 42, same shuffled test messages for each model, 10 warm-ups, wall-clock mean with models already loaded. HTTP and UI time excluded.",
   "size_definition": "Deployed artifact bytes / 1,000,000 excluding runtime and shared code.",
   "models": [
     {
       "model": "rules",
       "macro_f1": 0.5339616695791676,
       "size_mb": 0.000588,
-      "mean_cpu_latency_ms": 0.115235445,
+      "mean_cpu_latency_ms": 0.04161227,
       "runs": 200,
       "offensive_precision": 0.7954545454545454,
       "offensive_recall": 0.09776536312849161,
@@ -39,13 +39,13 @@
       "fp": 18,
       "fn": 646,
       "tp": 70,
-      "cpu": "AMD EPYC 9V74 80-Core Processor"
+      "cpu": "Apple M4"
     },
     {
       "model": "tfidf",
       "macro_f1": 0.721434494598054,
       "size_mb": 1.028072,
-      "mean_cpu_latency_ms": 0.41463891999999997,
+      "mean_cpu_latency_ms": 0.188372675,
       "runs": 200,
       "offensive_precision": 0.5362134688691232,
       "offensive_recall": 0.5893854748603352,
@@ -53,21 +53,21 @@
       "fp": 365,
       "fn": 294,
       "tp": 422,
-      "cpu": "AMD EPYC 9V74 80-Core Processor"
+      "cpu": "Apple M4"
     },
     {
       "model": "neural",
-      "macro_f1": 0.6329570045139875,
-      "size_mb": 5.412562,
-      "mean_cpu_latency_ms": 0.09500325500000001,
+      "macro_f1": 0.7644461271535476,
+      "size_mb": 8.311054,
+      "mean_cpu_latency_ms": 0.08237271,
       "runs": 200,
-      "offensive_precision": 0.4099462365591398,
-      "offensive_recall": 0.4259776536312849,
-      "tn": 2373,
-      "fp": 439,
-      "fn": 411,
-      "tp": 305,
-      "cpu": "AMD EPYC 9V74 80-Core Processor"
+      "offensive_precision": 0.6715927750410509,
+      "offensive_recall": 0.5712290502793296,
+      "tn": 2612,
+      "fp": 200,
+      "fn": 307,
+      "tp": 409,
+      "cpu": "Apple M4"
     }
   ]
 }

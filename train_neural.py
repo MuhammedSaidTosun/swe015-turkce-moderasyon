@@ -10,12 +10,16 @@ from pathlib import Path
 from time import perf_counter
 
 import numpy as np
+from scipy import sparse
 from scipy.special import expit
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import normalize
 from threadpoolctl import threadpool_limits
 
 from classical import normalize_text
-from neural import pool_tokens
+from neural import lexical_terms, pool_tokens
 
 
 SEED = 42
@@ -30,6 +34,9 @@ HIDDEN_UNITS = 64
 MAX_CLASSIFIER_EPOCHS = 50
 PATIENCE = 8
 THRESHOLDS = np.linspace(0.15, 0.75, 61)
+TERM_LIMIT = 12000
+TERM_GAIN = 8.0
+DENSE_GAIN = 1 / np.sqrt(DIMENSIONS)
 
 
 def read_split(path):
@@ -166,7 +173,7 @@ def fit_classifier(train_x, train_y, val_x, val_y, seed):
                           threshold=np.float64(threshold))
         if epoch - best_epoch >= PATIENCE:
             break
-    stats = {"representation": "mean of in-vocabulary word vectors, standardized on train",
+    stats = {"representation": "standardized mean CBOW vectors plus binary word, bigram and character features",
              "method": "one ReLU hidden layer, sigmoid output",
              "optimizer": "minibatch SGD with Nesterov momentum", "learning_rate": 0.018,
              "momentum": 0.9, "alpha": 0.001, "batch_size": 128, "hidden_units": HIDDEN_UNITS,
@@ -176,6 +183,28 @@ def fit_classifier(train_x, train_y, val_x, val_y, seed):
     return params, stats
 
 
+def classifier_features(train_tokens, train_y, val_tokens, word_ids, vectors):
+    vectorizer = CountVectorizer(analyzer=lexical_terms, binary=True, min_df=3,
+                                 max_features=60000, dtype=np.float32)
+    train_terms = vectorizer.fit_transform(train_tokens)
+    selector = SelectKBest(chi2, k=min(TERM_LIMIT, train_terms.shape[1]))
+    train_terms = selector.fit_transform(train_terms, train_y)
+    val_terms = selector.transform(vectorizer.transform(val_tokens))
+    terms = vectorizer.get_feature_names_out()[selector.get_support()].astype(str)
+    train_pool = np.stack([pool_tokens(row, word_ids, vectors) for row in train_tokens])
+    val_pool = np.stack([pool_tokens(row, word_ids, vectors) for row in val_tokens])
+    mean = train_pool.mean(axis=0)
+    scale = train_pool.std(axis=0)
+    scale[scale < 1e-8] = 1.
+
+    def combine(pooled, counts):
+        dense = ((pooled - mean) / scale * np.float32(DENSE_GAIN)).astype(np.float32)
+        lexical = normalize(counts, norm="l2") * np.float32(TERM_GAIN)
+        return sparse.hstack([sparse.csr_matrix(dense), lexical], format="csr")
+
+    return combine(train_pool, train_terms), combine(val_pool, val_terms), terms, mean, scale
+
+
 def train(args):
     train_file = args.data_dir / "train.csv"
     val_file = args.data_dir / "validation.csv"
@@ -183,24 +212,25 @@ def train(args):
     val_tokens, val_y = read_split(val_file)
     start = perf_counter()
     vocab, word_ids, vectors, word_stats = fit_word2vec(train_tokens, args.embedding_epochs, args.seed)
-    train_x = np.stack([pool_tokens(row, word_ids, vectors) for row in train_tokens])
-    val_x = np.stack([pool_tokens(row, word_ids, vectors) for row in val_tokens])
-    mean = train_x.mean(axis=0)
-    scale = train_x.std(axis=0)
-    scale[scale < 1e-8] = 1.
-    params, clf_stats = fit_classifier((train_x - mean) / scale, train_y,
-                                       (val_x - mean) / scale, val_y, args.seed)
+    chat_tokens, chat_y = read_split(args.chat_train)
+    train_x, val_x, terms, mean, scale = classifier_features(
+        train_tokens + chat_tokens, np.concatenate([train_y, chat_y]), val_tokens, word_ids, vectors)
+    params, clf_stats = fit_classifier(train_x, np.concatenate([train_y, chat_y]), val_x, val_y, args.seed)
+    params["w1"], params["term_weights"] = np.split(params["w1"], [DIMENSIONS])
+    clf_stats.update(lexical_features=len(terms), feature_selection="chi2 on training labels only",
+                     dense_gain=DENSE_GAIN, term_gain=TERM_GAIN)
     args.artifact_dir.mkdir(parents=True, exist_ok=True)
     args.results_dir.mkdir(parents=True, exist_ok=True)
-    report = {"seed": args.seed, "rows": {"train": len(train_y), "validation": len(val_y)},
+    report = {"seed": args.seed, "rows": {"train": len(train_y), "additional_chat_train": len(chat_y),
+                                          "validation": len(val_y)},
               "split_sha256": {p.stem: hashlib.sha256(p.read_bytes()).hexdigest()
-                               for p in (train_file, val_file)},
+                               for p in (train_file, val_file, args.chat_train)},
               "word2vec": word_stats, "classifier": clf_stats,
               "training_seconds": perf_counter() - start}
     temp = args.artifact_dir / f"neural-{os.getpid()}.npz"
     try:
         np.savez_compressed(temp, vocab=np.array(vocab), vectors=vectors, mean=mean, scale=scale,
-                            **params)
+                            terms=terms, term_gain=TERM_GAIN, dense_gain=DENSE_GAIN, **params)
         temp.replace(args.artifact_dir / "neural.npz")
     finally:
         temp.unlink(missing_ok=True)
@@ -213,6 +243,7 @@ def train(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=Path("data/processed"))
+    parser.add_argument("--chat-train", type=Path, default=Path(__file__).resolve().parent / "data/neural_chat_train.csv")
     parser.add_argument("--artifact-dir", type=Path, default=Path("artifacts"))
     parser.add_argument("--results-dir", type=Path, default=Path("results"))
     parser.add_argument("--embedding-epochs", type=int, default=EMBEDDING_EPOCHS)

@@ -1,0 +1,745 @@
+text,label
+"Kes sesini, aptal herif!",1
+"Bak şu aptal adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, aptal.",1
+"Defol lobiden aptal, seni istemiyoruz.",1
+Yine mi sen aptal?,1
+Şu aptal yüzünden turu kaybettik.,1
+"Tam bir aptal gibi oynuyorsun, çek git.",1
+Senin gibi aptal biriyle niye eşleştim?,1
+"Kes sesini, ahmak herif!",1
+"Bak şu ahmak adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, ahmak.",1
+"Defol lobiden ahmak, seni istemiyoruz.",1
+Yine mi sen ahmak?,1
+Şu ahmak yüzünden turu kaybettik.,1
+"Tam bir ahmak gibi oynuyorsun, çek git.",1
+Senin gibi ahmak biriyle niye eşleştim?,1
+"Kes sesini, dangalak herif!",1
+"Bak şu dangalak adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, dangalak.",1
+"Defol lobiden dangalak, seni istemiyoruz.",1
+Yine mi sen dangalak?,1
+Şu dangalak yüzünden turu kaybettik.,1
+"Tam bir dangalak gibi oynuyorsun, çek git.",1
+Senin gibi dangalak biriyle niye eşleştim?,1
+"Kes sesini, salak herif!",1
+"Bak şu salak adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, salak.",1
+"Defol lobiden salak, seni istemiyoruz.",1
+Yine mi sen salak?,1
+Şu salak yüzünden turu kaybettik.,1
+"Tam bir salak gibi oynuyorsun, çek git.",1
+Senin gibi salak biriyle niye eşleştim?,1
+"Kes sesini, beyinsiz herif!",1
+"Bak şu beyinsiz adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, beyinsiz.",1
+"Defol lobiden beyinsiz, seni istemiyoruz.",1
+Yine mi sen beyinsiz?,1
+Şu beyinsiz yüzünden turu kaybettik.,1
+"Tam bir beyinsiz gibi oynuyorsun, çek git.",1
+Senin gibi beyinsiz biriyle niye eşleştim?,1
+"Kes sesini, hödük herif!",1
+"Bak şu hödük adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, hödük.",1
+"Defol lobiden hödük, seni istemiyoruz.",1
+Yine mi sen hödük?,1
+Şu hödük yüzünden turu kaybettik.,1
+"Tam bir hödük gibi oynuyorsun, çek git.",1
+Senin gibi hödük biriyle niye eşleştim?,1
+"Kes sesini, ezik herif!",1
+"Bak şu ezik adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, ezik.",1
+"Defol lobiden ezik, seni istemiyoruz.",1
+Yine mi sen ezik?,1
+Şu ezik yüzünden turu kaybettik.,1
+"Tam bir ezik gibi oynuyorsun, çek git.",1
+Senin gibi ezik biriyle niye eşleştim?,1
+"Kes sesini, şerefsiz herif!",1
+"Bak şu şerefsiz adama, takımımıza düşmüş.",1
+"Senden anca böyle bir hareket beklenir, şerefsiz.",1
+"Defol lobiden şerefsiz, seni istemiyoruz.",1
+Yine mi sen şerefsiz?,1
+Şu şerefsiz yüzünden turu kaybettik.,1
+"Tam bir şerefsiz gibi oynuyorsun, çek git.",1
+Senin gibi şerefsiz biriyle niye eşleştim?,1
+Kimseye “aptal” demeyin lütfen.,0
+Takım arkadaşına aptal demek haksızlık.,0
+"Bana “aptal” dediler, bu mesajı nereye bildireyim?",0
+Birini aptal diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “aptal” yazan kişiyi uyardık.,0
+Ona aptal dediğin için özür dilemelisin.,0
+Rakibe “aptal” demek yerine iyi oyunlar diyelim.,0
+“aptal” sözünü rapora ekledim.,0
+Kimseye “ahmak” demeyin lütfen.,0
+Takım arkadaşına ahmak demek haksızlık.,0
+"Bana “ahmak” dediler, bu mesajı nereye bildireyim?",0
+Birini ahmak diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “ahmak” yazan kişiyi uyardık.,0
+Ona ahmak dediğin için özür dilemelisin.,0
+Rakibe “ahmak” demek yerine iyi oyunlar diyelim.,0
+“ahmak” sözünü rapora ekledim.,0
+Kimseye “dangalak” demeyin lütfen.,0
+Takım arkadaşına dangalak demek haksızlık.,0
+"Bana “dangalak” dediler, bu mesajı nereye bildireyim?",0
+Birini dangalak diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “dangalak” yazan kişiyi uyardık.,0
+Ona dangalak dediğin için özür dilemelisin.,0
+Rakibe “dangalak” demek yerine iyi oyunlar diyelim.,0
+“dangalak” sözünü rapora ekledim.,0
+Kimseye “salak” demeyin lütfen.,0
+Takım arkadaşına salak demek haksızlık.,0
+"Bana “salak” dediler, bu mesajı nereye bildireyim?",0
+Birini salak diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “salak” yazan kişiyi uyardık.,0
+Ona salak dediğin için özür dilemelisin.,0
+Rakibe “salak” demek yerine iyi oyunlar diyelim.,0
+“salak” sözünü rapora ekledim.,0
+Kimseye “beyinsiz” demeyin lütfen.,0
+Takım arkadaşına beyinsiz demek haksızlık.,0
+"Bana “beyinsiz” dediler, bu mesajı nereye bildireyim?",0
+Birini beyinsiz diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “beyinsiz” yazan kişiyi uyardık.,0
+Ona beyinsiz dediğin için özür dilemelisin.,0
+Rakibe “beyinsiz” demek yerine iyi oyunlar diyelim.,0
+“beyinsiz” sözünü rapora ekledim.,0
+Kimseye “hödük” demeyin lütfen.,0
+Takım arkadaşına hödük demek haksızlık.,0
+"Bana “hödük” dediler, bu mesajı nereye bildireyim?",0
+Birini hödük diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “hödük” yazan kişiyi uyardık.,0
+Ona hödük dediğin için özür dilemelisin.,0
+Rakibe “hödük” demek yerine iyi oyunlar diyelim.,0
+“hödük” sözünü rapora ekledim.,0
+Kimseye “ezik” demeyin lütfen.,0
+Takım arkadaşına ezik demek haksızlık.,0
+"Bana “ezik” dediler, bu mesajı nereye bildireyim?",0
+Birini ezik diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “ezik” yazan kişiyi uyardık.,0
+Ona ezik dediğin için özür dilemelisin.,0
+Rakibe “ezik” demek yerine iyi oyunlar diyelim.,0
+“ezik” sözünü rapora ekledim.,0
+Kimseye “şerefsiz” demeyin lütfen.,0
+Takım arkadaşına şerefsiz demek haksızlık.,0
+"Bana “şerefsiz” dediler, bu mesajı nereye bildireyim?",0
+Birini şerefsiz diye çağırmak doğru mu sence? Bence yanlış.,0
+Sohbette “şerefsiz” yazan kişiyi uyardık.,0
+Ona şerefsiz dediğin için özür dilemelisin.,0
+Rakibe “şerefsiz” demek yerine iyi oyunlar diyelim.,0
+“şerefsiz” sözünü rapora ekledim.,0
+"Gerçekten aptalsın ya, sus artık.",1
+"Sen resmen aptalsın, başka açıklaması yok.",1
+"Çünkü aptalsın, git başkasını uğraştır.",1
+"Düpedüz aptalsın, tartışma bitti.",1
+Sen de arkadaşın kadar aptalsın.,1
+O kadar aptalsın ki anlatmaya değmez.,1
+"Gerçekten ahmaksın ya, sus artık.",1
+"Sen resmen ahmaksın, başka açıklaması yok.",1
+"Çünkü ahmaksın, git başkasını uğraştır.",1
+"Düpedüz ahmaksın, tartışma bitti.",1
+Sen de arkadaşın kadar ahmaksın.,1
+O kadar ahmaksın ki anlatmaya değmez.,1
+"Gerçekten salaksın ya, sus artık.",1
+"Sen resmen salaksın, başka açıklaması yok.",1
+"Çünkü salaksın, git başkasını uğraştır.",1
+"Düpedüz salaksın, tartışma bitti.",1
+Sen de arkadaşın kadar salaksın.,1
+O kadar salaksın ki anlatmaya değmez.,1
+"Gerçekten eziksin ya, sus artık.",1
+"Sen resmen eziksin, başka açıklaması yok.",1
+"Çünkü eziksin, git başkasını uğraştır.",1
+"Düpedüz eziksin, tartışma bitti.",1
+Sen de arkadaşın kadar eziksin.,1
+O kadar eziksin ki anlatmaya değmez.,1
+"Gerçekten beyinsizsin ya, sus artık.",1
+"Sen resmen beyinsizsin, başka açıklaması yok.",1
+"Çünkü beyinsizsin, git başkasını uğraştır.",1
+"Düpedüz beyinsizsin, tartışma bitti.",1
+Sen de arkadaşın kadar beyinsizsin.,1
+O kadar beyinsizsin ki anlatmaya değmez.,1
+"Gerçekten haysiyetsizsin ya, sus artık.",1
+"Sen resmen haysiyetsizsin, başka açıklaması yok.",1
+"Çünkü haysiyetsizsin, git başkasını uğraştır.",1
+"Düpedüz haysiyetsizsin, tartışma bitti.",1
+Sen de arkadaşın kadar haysiyetsizsin.,1
+O kadar haysiyetsizsin ki anlatmaya değmez.,1
+"Gerçekten dangalaksın ya, sus artık.",1
+"Sen resmen dangalaksın, başka açıklaması yok.",1
+"Çünkü dangalaksın, git başkasını uğraştır.",1
+"Düpedüz dangalaksın, tartışma bitti.",1
+Sen de arkadaşın kadar dangalaksın.,1
+O kadar dangalaksın ki anlatmaya değmez.,1
+"Gerçekten şerefsizsin ya, sus artık.",1
+"Sen resmen şerefsizsin, başka açıklaması yok.",1
+"Çünkü şerefsizsin, git başkasını uğraştır.",1
+"Düpedüz şerefsizsin, tartışma bitti.",1
+Sen de arkadaşın kadar şerefsizsin.,1
+O kadar şerefsizsin ki anlatmaya değmez.,1
+Bana “aptalsın” yazılmasını şikâyet ettim.,0
+"Mesajında “aptalsın” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “aptalsın” diye seslendi, onu engelledim.",0
+“aptalsın” yazıp başkalarını küçümsemek yasak.,0
+Sana “aptalsın” dediğim için pişmanım.,0
+“aptalsın” diyen kullanıcı uyarı aldı.,0
+Bana “ahmaksın” yazılmasını şikâyet ettim.,0
+"Mesajında “ahmaksın” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “ahmaksın” diye seslendi, onu engelledim.",0
+“ahmaksın” yazıp başkalarını küçümsemek yasak.,0
+Sana “ahmaksın” dediğim için pişmanım.,0
+“ahmaksın” diyen kullanıcı uyarı aldı.,0
+Bana “salaksın” yazılmasını şikâyet ettim.,0
+"Mesajında “salaksın” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “salaksın” diye seslendi, onu engelledim.",0
+“salaksın” yazıp başkalarını küçümsemek yasak.,0
+Sana “salaksın” dediğim için pişmanım.,0
+“salaksın” diyen kullanıcı uyarı aldı.,0
+Bana “eziksin” yazılmasını şikâyet ettim.,0
+"Mesajında “eziksin” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “eziksin” diye seslendi, onu engelledim.",0
+“eziksin” yazıp başkalarını küçümsemek yasak.,0
+Sana “eziksin” dediğim için pişmanım.,0
+“eziksin” diyen kullanıcı uyarı aldı.,0
+Bana “beyinsizsin” yazılmasını şikâyet ettim.,0
+"Mesajında “beyinsizsin” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “beyinsizsin” diye seslendi, onu engelledim.",0
+“beyinsizsin” yazıp başkalarını küçümsemek yasak.,0
+Sana “beyinsizsin” dediğim için pişmanım.,0
+“beyinsizsin” diyen kullanıcı uyarı aldı.,0
+Bana “haysiyetsizsin” yazılmasını şikâyet ettim.,0
+"Mesajında “haysiyetsizsin” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “haysiyetsizsin” diye seslendi, onu engelledim.",0
+“haysiyetsizsin” yazıp başkalarını küçümsemek yasak.,0
+Sana “haysiyetsizsin” dediğim için pişmanım.,0
+“haysiyetsizsin” diyen kullanıcı uyarı aldı.,0
+Bana “dangalaksın” yazılmasını şikâyet ettim.,0
+"Mesajında “dangalaksın” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “dangalaksın” diye seslendi, onu engelledim.",0
+“dangalaksın” yazıp başkalarını küçümsemek yasak.,0
+Sana “dangalaksın” dediğim için pişmanım.,0
+“dangalaksın” diyen kullanıcı uyarı aldı.,0
+Bana “şerefsizsin” yazılmasını şikâyet ettim.,0
+"Mesajında “şerefsizsin” ifadesi geçiyordu, lütfen hakaret etme.",0
+"Dün biri “şerefsizsin” diye seslendi, onu engelledim.",0
+“şerefsizsin” yazıp başkalarını küçümsemek yasak.,0
+Sana “şerefsizsin” dediğim için pişmanım.,0
+“şerefsizsin” diyen kullanıcı uyarı aldı.,0
+Beraber girersek bu bölümü daha rahat geçeriz.,0
+"O nasıl gol öyle, tebrikler!",0
+"Benim bilgisayar oyundan attı, hemen dönüyorum.",0
+Bu son hamle çok kötüydü ama geri dönebiliriz.,0
+Abi ne zor bölüm yapmışlar.,0
+Oynamayı daha yeni öğreniyorum.,0
+"İtemi yanlışlıkla sattım, benim hatam.",0
+"Sesini açar mısın, seni duyamıyoruz?",0
+"Vuruşu kaçırmana üzüldüm, olur böyle.",0
+Beni gruba siz mi davet ettiniz?,0
+Bu karakterin zayıflatılması bence saçmalık.,0
+"Şu aptal bağlantı yine koptu, sağlayıcıyı arayacağım.",0
+Bu görev için taktik önerecek biri var mı?,0
+Sıraya girmeden önce beş dakika bekleyelim.,0
+"Kötü geçti ama eğlendim, teşekkürler.",0
+"Küfür etmeyelim arkadaşlar, sonuçta bir oyun.",0
+Şu saçma güncellemeden sonra ekran kararıyor.,0
+Ona öyle söylemeni kırıcı buldum.,0
+Kimse oyunu kötü oynadı diye hakaret duymak zorunda kalmamalı.,0
+"Her eleştiri hakaret değil, oyundan konuşalım.",0
+Kendini adam mı sanıyorsun lan?,1
+Yine sen mi geldin boş teneke?,1
+Beynini kullan da bas şu tuşa geri zekalı!,1
+Şu vasıfsızı biri maçtan atsın.,1
+"Bir sus be çapsız, yeter.",1
+Seni kim takıma alır be sığır!,1
+"Rezilsin, ağzını kapat artık.",1
+"Senin kafan basmaz, boş yapma gerizekalı.",1
+Gelmiş geçmiş en moron topçu sensin.,1
+"Kafasız, bütün akşamımızı mahvettin.",1
+"Ulan yavşak, o eşya benimdi!",1
+Pislik herif hâlâ takımı suçluyor.,1
+Senden daha boş adam görmedim.,1
+Sen ve ekibin tam birer zavallısınız.,1
+İki kelimeyi bir araya getiremeyen cahil cühela!,1
+"Çık odadan, seni akılsız yaratık.",1
+Şu utanmaz herifi alın karşımdan.,1
+"Dünyanın en berbat insanısın, kaybol.",1
+"Bütün takım senden bıktı, embesil.",1
+Sen harbiden insan müsveddesisin.,1
+Bir oyuncuya geri zekâlı demen kırıcı.,0
+İnsanlara geri zekâlı demen sence adil mi?,0
+Takıma geri zekâlı demen kabul edilemez.,0
+Bize geri zekâlı demenin alemi yok.,0
+Adama geri zekâlı denmesini istemedim.,0
+Kaleciye geri zekâlı demesi beni üzdü.,0
+Çocuklara geri zekâlı demekten vazgeçin.,0
+Oyuncuya geri zekâlı demek hoş mu şimdi?,0
+İnsanlar için geri zekâlı kelimesini kullanmayı bırak.,0
+Kimse geri zekâlı diye azarlanmayı hak etmez.,0
+“geri zekâlı” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “geri zekâlı” kelimesini sohbetten kaldırdım.,0
+Kardeşime geri zekâlı denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye geri zekâlı demene gerek yoktu.,0
+Bunu geri zekâlı diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: geri zekâlı diye seslenme.,0
+Lobide “geri zekâlı” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk geri zekâlı değil, biraz heyecanlanmış.",0
+Herkese geri zekâlı diyerek dalga geçme.,0
+Bize geri zekâlı dendiği için itiraz ettik.,0
+"Ulan geri zekâlı, bırak bu işi.",1
+En büyük geri zekâlı sensin.,1
+geri zekâlı herif geldi yine.,1
+Senin takımda ne işin var geri zekâlı?,1
+Burada olduğun sürece geri zekâlı diye çağıracağım seni.,1
+"Çekil önümden geri zekâlı, tek yaptığın yolu kapatmak.",1
+O konuşan geri zekâlı hiç susmayacak mı?,1
+Sen baştan aşağı geri zekâlı birisin.,1
+Şu geri zekâlı ile beni aynı gruba koymayın.,1
+"Ne biçim geri zekâlı bu, yazdığına bak.",1
+"Hadi oradan geri zekâlı, sen kim oluyorsun?",1
+Sana geri zekâlı demek bile iltifat olur.,1
+Bu kadar geri zekâlı olmayı nasıl başarıyorsun?,1
+Seni geri zekâlı seni!,1
+Tek kelimeyle geri zekâlı bir insansın.,1
+Bence hepiniz birer geri zekâlı olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif geri zekâlı.",1
+Sahadan çık artık geri zekâlı!,1
+Senden geri zekâlı dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor geri zekâlı.",1
+Bir oyuncuya aptal demen kırıcı.,0
+İnsanlara aptal demen sence adil mi?,0
+Takıma aptal demen kabul edilemez.,0
+Bize aptal demenin alemi yok.,0
+Adama aptal denmesini istemedim.,0
+Kaleciye aptal demesi beni üzdü.,0
+Çocuklara aptal demekten vazgeçin.,0
+Oyuncuya aptal demek hoş mu şimdi?,0
+İnsanlar için aptal kelimesini kullanmayı bırak.,0
+Kimse aptal diye azarlanmayı hak etmez.,0
+“aptal” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “aptal” kelimesini sohbetten kaldırdım.,0
+Kardeşime aptal denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye aptal demene gerek yoktu.,0
+Bunu aptal diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: aptal diye seslenme.,0
+Lobide “aptal” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk aptal değil, biraz heyecanlanmış.",0
+Herkese aptal diyerek dalga geçme.,0
+Bize aptal dendiği için itiraz ettik.,0
+"Ulan aptal, bırak bu işi.",1
+En büyük aptal sensin.,1
+aptal herif geldi yine.,1
+Senin takımda ne işin var aptal?,1
+Burada olduğun sürece aptal diye çağıracağım seni.,1
+"Çekil önümden aptal, tek yaptığın yolu kapatmak.",1
+O konuşan aptal hiç susmayacak mı?,1
+Sen baştan aşağı aptal birisin.,1
+Şu aptal ile beni aynı gruba koymayın.,1
+"Ne biçim aptal bu, yazdığına bak.",1
+"Hadi oradan aptal, sen kim oluyorsun?",1
+Sana aptal demek bile iltifat olur.,1
+Bu kadar aptal olmayı nasıl başarıyorsun?,1
+Seni aptal seni!,1
+Tek kelimeyle aptal bir insansın.,1
+Bence hepiniz birer aptal olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif aptal.",1
+Sahadan çık artık aptal!,1
+Senden aptal dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor aptal.",1
+Bir oyuncuya salak demen kırıcı.,0
+İnsanlara salak demen sence adil mi?,0
+Takıma salak demen kabul edilemez.,0
+Bize salak demenin alemi yok.,0
+Adama salak denmesini istemedim.,0
+Kaleciye salak demesi beni üzdü.,0
+Çocuklara salak demekten vazgeçin.,0
+Oyuncuya salak demek hoş mu şimdi?,0
+İnsanlar için salak kelimesini kullanmayı bırak.,0
+Kimse salak diye azarlanmayı hak etmez.,0
+“salak” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “salak” kelimesini sohbetten kaldırdım.,0
+Kardeşime salak denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye salak demene gerek yoktu.,0
+Bunu salak diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: salak diye seslenme.,0
+Lobide “salak” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk salak değil, biraz heyecanlanmış.",0
+Herkese salak diyerek dalga geçme.,0
+Bize salak dendiği için itiraz ettik.,0
+"Ulan salak, bırak bu işi.",1
+En büyük salak sensin.,1
+salak herif geldi yine.,1
+Senin takımda ne işin var salak?,1
+Burada olduğun sürece salak diye çağıracağım seni.,1
+"Çekil önümden salak, tek yaptığın yolu kapatmak.",1
+O konuşan salak hiç susmayacak mı?,1
+Sen baştan aşağı salak birisin.,1
+Şu salak ile beni aynı gruba koymayın.,1
+"Ne biçim salak bu, yazdığına bak.",1
+"Hadi oradan salak, sen kim oluyorsun?",1
+Sana salak demek bile iltifat olur.,1
+Bu kadar salak olmayı nasıl başarıyorsun?,1
+Seni salak seni!,1
+Tek kelimeyle salak bir insansın.,1
+Bence hepiniz birer salak olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif salak.",1
+Sahadan çık artık salak!,1
+Senden salak dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor salak.",1
+Bir oyuncuya akılsız demen kırıcı.,0
+İnsanlara akılsız demen sence adil mi?,0
+Takıma akılsız demen kabul edilemez.,0
+Bize akılsız demenin alemi yok.,0
+Adama akılsız denmesini istemedim.,0
+Kaleciye akılsız demesi beni üzdü.,0
+Çocuklara akılsız demekten vazgeçin.,0
+Oyuncuya akılsız demek hoş mu şimdi?,0
+İnsanlar için akılsız kelimesini kullanmayı bırak.,0
+Kimse akılsız diye azarlanmayı hak etmez.,0
+“akılsız” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “akılsız” kelimesini sohbetten kaldırdım.,0
+Kardeşime akılsız denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye akılsız demene gerek yoktu.,0
+Bunu akılsız diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: akılsız diye seslenme.,0
+Lobide “akılsız” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk akılsız değil, biraz heyecanlanmış.",0
+Herkese akılsız diyerek dalga geçme.,0
+Bize akılsız dendiği için itiraz ettik.,0
+"Ulan akılsız, bırak bu işi.",1
+En büyük akılsız sensin.,1
+akılsız herif geldi yine.,1
+Senin takımda ne işin var akılsız?,1
+Burada olduğun sürece akılsız diye çağıracağım seni.,1
+"Çekil önümden akılsız, tek yaptığın yolu kapatmak.",1
+O konuşan akılsız hiç susmayacak mı?,1
+Sen baştan aşağı akılsız birisin.,1
+Şu akılsız ile beni aynı gruba koymayın.,1
+"Ne biçim akılsız bu, yazdığına bak.",1
+"Hadi oradan akılsız, sen kim oluyorsun?",1
+Sana akılsız demek bile iltifat olur.,1
+Bu kadar akılsız olmayı nasıl başarıyorsun?,1
+Seni akılsız seni!,1
+Tek kelimeyle akılsız bir insansın.,1
+Bence hepiniz birer akılsız olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif akılsız.",1
+Sahadan çık artık akılsız!,1
+Senden akılsız dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor akılsız.",1
+Bir oyuncuya şerefsiz demen kırıcı.,0
+İnsanlara şerefsiz demen sence adil mi?,0
+Takıma şerefsiz demen kabul edilemez.,0
+Bize şerefsiz demenin alemi yok.,0
+Adama şerefsiz denmesini istemedim.,0
+Kaleciye şerefsiz demesi beni üzdü.,0
+Çocuklara şerefsiz demekten vazgeçin.,0
+Oyuncuya şerefsiz demek hoş mu şimdi?,0
+İnsanlar için şerefsiz kelimesini kullanmayı bırak.,0
+Kimse şerefsiz diye azarlanmayı hak etmez.,0
+“şerefsiz” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “şerefsiz” kelimesini sohbetten kaldırdım.,0
+Kardeşime şerefsiz denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye şerefsiz demene gerek yoktu.,0
+Bunu şerefsiz diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: şerefsiz diye seslenme.,0
+Lobide “şerefsiz” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk şerefsiz değil, biraz heyecanlanmış.",0
+Herkese şerefsiz diyerek dalga geçme.,0
+Bize şerefsiz dendiği için itiraz ettik.,0
+"Ulan şerefsiz, bırak bu işi.",1
+En büyük şerefsiz sensin.,1
+şerefsiz herif geldi yine.,1
+Senin takımda ne işin var şerefsiz?,1
+Burada olduğun sürece şerefsiz diye çağıracağım seni.,1
+"Çekil önümden şerefsiz, tek yaptığın yolu kapatmak.",1
+O konuşan şerefsiz hiç susmayacak mı?,1
+Sen baştan aşağı şerefsiz birisin.,1
+Şu şerefsiz ile beni aynı gruba koymayın.,1
+"Ne biçim şerefsiz bu, yazdığına bak.",1
+"Hadi oradan şerefsiz, sen kim oluyorsun?",1
+Sana şerefsiz demek bile iltifat olur.,1
+Bu kadar şerefsiz olmayı nasıl başarıyorsun?,1
+Seni şerefsiz seni!,1
+Tek kelimeyle şerefsiz bir insansın.,1
+Bence hepiniz birer şerefsiz olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif şerefsiz.",1
+Sahadan çık artık şerefsiz!,1
+Senden şerefsiz dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor şerefsiz.",1
+Bir oyuncuya ahmak demen kırıcı.,0
+İnsanlara ahmak demen sence adil mi?,0
+Takıma ahmak demen kabul edilemez.,0
+Bize ahmak demenin alemi yok.,0
+Adama ahmak denmesini istemedim.,0
+Kaleciye ahmak demesi beni üzdü.,0
+Çocuklara ahmak demekten vazgeçin.,0
+Oyuncuya ahmak demek hoş mu şimdi?,0
+İnsanlar için ahmak kelimesini kullanmayı bırak.,0
+Kimse ahmak diye azarlanmayı hak etmez.,0
+“ahmak” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “ahmak” kelimesini sohbetten kaldırdım.,0
+Kardeşime ahmak denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye ahmak demene gerek yoktu.,0
+Bunu ahmak diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: ahmak diye seslenme.,0
+Lobide “ahmak” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk ahmak değil, biraz heyecanlanmış.",0
+Herkese ahmak diyerek dalga geçme.,0
+Bize ahmak dendiği için itiraz ettik.,0
+"Ulan ahmak, bırak bu işi.",1
+En büyük ahmak sensin.,1
+ahmak herif geldi yine.,1
+Senin takımda ne işin var ahmak?,1
+Burada olduğun sürece ahmak diye çağıracağım seni.,1
+"Çekil önümden ahmak, tek yaptığın yolu kapatmak.",1
+O konuşan ahmak hiç susmayacak mı?,1
+Sen baştan aşağı ahmak birisin.,1
+Şu ahmak ile beni aynı gruba koymayın.,1
+"Ne biçim ahmak bu, yazdığına bak.",1
+"Hadi oradan ahmak, sen kim oluyorsun?",1
+Sana ahmak demek bile iltifat olur.,1
+Bu kadar ahmak olmayı nasıl başarıyorsun?,1
+Seni ahmak seni!,1
+Tek kelimeyle ahmak bir insansın.,1
+Bence hepiniz birer ahmak olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif ahmak.",1
+Sahadan çık artık ahmak!,1
+Senden ahmak dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor ahmak.",1
+Bir oyuncuya ezik demen kırıcı.,0
+İnsanlara ezik demen sence adil mi?,0
+Takıma ezik demen kabul edilemez.,0
+Bize ezik demenin alemi yok.,0
+Adama ezik denmesini istemedim.,0
+Kaleciye ezik demesi beni üzdü.,0
+Çocuklara ezik demekten vazgeçin.,0
+Oyuncuya ezik demek hoş mu şimdi?,0
+İnsanlar için ezik kelimesini kullanmayı bırak.,0
+Kimse ezik diye azarlanmayı hak etmez.,0
+“ezik” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “ezik” kelimesini sohbetten kaldırdım.,0
+Kardeşime ezik denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye ezik demene gerek yoktu.,0
+Bunu ezik diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: ezik diye seslenme.,0
+Lobide “ezik” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk ezik değil, biraz heyecanlanmış.",0
+Herkese ezik diyerek dalga geçme.,0
+Bize ezik dendiği için itiraz ettik.,0
+"Ulan ezik, bırak bu işi.",1
+En büyük ezik sensin.,1
+ezik herif geldi yine.,1
+Senin takımda ne işin var ezik?,1
+Burada olduğun sürece ezik diye çağıracağım seni.,1
+"Çekil önümden ezik, tek yaptığın yolu kapatmak.",1
+O konuşan ezik hiç susmayacak mı?,1
+Sen baştan aşağı ezik birisin.,1
+Şu ezik ile beni aynı gruba koymayın.,1
+"Ne biçim ezik bu, yazdığına bak.",1
+"Hadi oradan ezik, sen kim oluyorsun?",1
+Sana ezik demek bile iltifat olur.,1
+Bu kadar ezik olmayı nasıl başarıyorsun?,1
+Seni ezik seni!,1
+Tek kelimeyle ezik bir insansın.,1
+Bence hepiniz birer ezik olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif ezik.",1
+Sahadan çık artık ezik!,1
+Senden ezik dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor ezik.",1
+Bir oyuncuya beyinsiz demen kırıcı.,0
+İnsanlara beyinsiz demen sence adil mi?,0
+Takıma beyinsiz demen kabul edilemez.,0
+Bize beyinsiz demenin alemi yok.,0
+Adama beyinsiz denmesini istemedim.,0
+Kaleciye beyinsiz demesi beni üzdü.,0
+Çocuklara beyinsiz demekten vazgeçin.,0
+Oyuncuya beyinsiz demek hoş mu şimdi?,0
+İnsanlar için beyinsiz kelimesini kullanmayı bırak.,0
+Kimse beyinsiz diye azarlanmayı hak etmez.,0
+“beyinsiz” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “beyinsiz” kelimesini sohbetten kaldırdım.,0
+Kardeşime beyinsiz denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye beyinsiz demene gerek yoktu.,0
+Bunu beyinsiz diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: beyinsiz diye seslenme.,0
+Lobide “beyinsiz” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk beyinsiz değil, biraz heyecanlanmış.",0
+Herkese beyinsiz diyerek dalga geçme.,0
+Bize beyinsiz dendiği için itiraz ettik.,0
+"Ulan beyinsiz, bırak bu işi.",1
+En büyük beyinsiz sensin.,1
+beyinsiz herif geldi yine.,1
+Senin takımda ne işin var beyinsiz?,1
+Burada olduğun sürece beyinsiz diye çağıracağım seni.,1
+"Çekil önümden beyinsiz, tek yaptığın yolu kapatmak.",1
+O konuşan beyinsiz hiç susmayacak mı?,1
+Sen baştan aşağı beyinsiz birisin.,1
+Şu beyinsiz ile beni aynı gruba koymayın.,1
+"Ne biçim beyinsiz bu, yazdığına bak.",1
+"Hadi oradan beyinsiz, sen kim oluyorsun?",1
+Sana beyinsiz demek bile iltifat olur.,1
+Bu kadar beyinsiz olmayı nasıl başarıyorsun?,1
+Seni beyinsiz seni!,1
+Tek kelimeyle beyinsiz bir insansın.,1
+Bence hepiniz birer beyinsiz olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif beyinsiz.",1
+Sahadan çık artık beyinsiz!,1
+Senden beyinsiz dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor beyinsiz.",1
+Bir oyuncuya dangalak demen kırıcı.,0
+İnsanlara dangalak demen sence adil mi?,0
+Takıma dangalak demen kabul edilemez.,0
+Bize dangalak demenin alemi yok.,0
+Adama dangalak denmesini istemedim.,0
+Kaleciye dangalak demesi beni üzdü.,0
+Çocuklara dangalak demekten vazgeçin.,0
+Oyuncuya dangalak demek hoş mu şimdi?,0
+İnsanlar için dangalak kelimesini kullanmayı bırak.,0
+Kimse dangalak diye azarlanmayı hak etmez.,0
+“dangalak” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “dangalak” kelimesini sohbetten kaldırdım.,0
+Kardeşime dangalak denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye dangalak demene gerek yoktu.,0
+Bunu dangalak diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: dangalak diye seslenme.,0
+Lobide “dangalak” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk dangalak değil, biraz heyecanlanmış.",0
+Herkese dangalak diyerek dalga geçme.,0
+Bize dangalak dendiği için itiraz ettik.,0
+"Ulan dangalak, bırak bu işi.",1
+En büyük dangalak sensin.,1
+dangalak herif geldi yine.,1
+Senin takımda ne işin var dangalak?,1
+Burada olduğun sürece dangalak diye çağıracağım seni.,1
+"Çekil önümden dangalak, tek yaptığın yolu kapatmak.",1
+O konuşan dangalak hiç susmayacak mı?,1
+Sen baştan aşağı dangalak birisin.,1
+Şu dangalak ile beni aynı gruba koymayın.,1
+"Ne biçim dangalak bu, yazdığına bak.",1
+"Hadi oradan dangalak, sen kim oluyorsun?",1
+Sana dangalak demek bile iltifat olur.,1
+Bu kadar dangalak olmayı nasıl başarıyorsun?,1
+Seni dangalak seni!,1
+Tek kelimeyle dangalak bir insansın.,1
+Bence hepiniz birer dangalak olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif dangalak.",1
+Sahadan çık artık dangalak!,1
+Senden dangalak dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor dangalak.",1
+Bir oyuncuya haysiyetsiz demen kırıcı.,0
+İnsanlara haysiyetsiz demen sence adil mi?,0
+Takıma haysiyetsiz demen kabul edilemez.,0
+Bize haysiyetsiz demenin alemi yok.,0
+Adama haysiyetsiz denmesini istemedim.,0
+Kaleciye haysiyetsiz demesi beni üzdü.,0
+Çocuklara haysiyetsiz demekten vazgeçin.,0
+Oyuncuya haysiyetsiz demek hoş mu şimdi?,0
+İnsanlar için haysiyetsiz kelimesini kullanmayı bırak.,0
+Kimse haysiyetsiz diye azarlanmayı hak etmez.,0
+“haysiyetsiz” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “haysiyetsiz” kelimesini sohbetten kaldırdım.,0
+Kardeşime haysiyetsiz denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye haysiyetsiz demene gerek yoktu.,0
+Bunu haysiyetsiz diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: haysiyetsiz diye seslenme.,0
+Lobide “haysiyetsiz” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk haysiyetsiz değil, biraz heyecanlanmış.",0
+Herkese haysiyetsiz diyerek dalga geçme.,0
+Bize haysiyetsiz dendiği için itiraz ettik.,0
+"Ulan haysiyetsiz, bırak bu işi.",1
+En büyük haysiyetsiz sensin.,1
+haysiyetsiz herif geldi yine.,1
+Senin takımda ne işin var haysiyetsiz?,1
+Burada olduğun sürece haysiyetsiz diye çağıracağım seni.,1
+"Çekil önümden haysiyetsiz, tek yaptığın yolu kapatmak.",1
+O konuşan haysiyetsiz hiç susmayacak mı?,1
+Sen baştan aşağı haysiyetsiz birisin.,1
+Şu haysiyetsiz ile beni aynı gruba koymayın.,1
+"Ne biçim haysiyetsiz bu, yazdığına bak.",1
+"Hadi oradan haysiyetsiz, sen kim oluyorsun?",1
+Sana haysiyetsiz demek bile iltifat olur.,1
+Bu kadar haysiyetsiz olmayı nasıl başarıyorsun?,1
+Seni haysiyetsiz seni!,1
+Tek kelimeyle haysiyetsiz bir insansın.,1
+Bence hepiniz birer haysiyetsiz olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif haysiyetsiz.",1
+Sahadan çık artık haysiyetsiz!,1
+Senden haysiyetsiz dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor haysiyetsiz.",1
+Bir oyuncuya beceriksiz demen kırıcı.,0
+İnsanlara beceriksiz demen sence adil mi?,0
+Takıma beceriksiz demen kabul edilemez.,0
+Bize beceriksiz demenin alemi yok.,0
+Adama beceriksiz denmesini istemedim.,0
+Kaleciye beceriksiz demesi beni üzdü.,0
+Çocuklara beceriksiz demekten vazgeçin.,0
+Oyuncuya beceriksiz demek hoş mu şimdi?,0
+İnsanlar için beceriksiz kelimesini kullanmayı bırak.,0
+Kimse beceriksiz diye azarlanmayı hak etmez.,0
+“beceriksiz” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “beceriksiz” kelimesini sohbetten kaldırdım.,0
+Kardeşime beceriksiz denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye beceriksiz demene gerek yoktu.,0
+Bunu beceriksiz diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: beceriksiz diye seslenme.,0
+Lobide “beceriksiz” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk beceriksiz değil, biraz heyecanlanmış.",0
+Herkese beceriksiz diyerek dalga geçme.,0
+Bize beceriksiz dendiği için itiraz ettik.,0
+"Ulan beceriksiz, bırak bu işi.",1
+En büyük beceriksiz sensin.,1
+beceriksiz herif geldi yine.,1
+Senin takımda ne işin var beceriksiz?,1
+Burada olduğun sürece beceriksiz diye çağıracağım seni.,1
+"Çekil önümden beceriksiz, tek yaptığın yolu kapatmak.",1
+O konuşan beceriksiz hiç susmayacak mı?,1
+Sen baştan aşağı beceriksiz birisin.,1
+Şu beceriksiz ile beni aynı gruba koymayın.,1
+"Ne biçim beceriksiz bu, yazdığına bak.",1
+"Hadi oradan beceriksiz, sen kim oluyorsun?",1
+Sana beceriksiz demek bile iltifat olur.,1
+Bu kadar beceriksiz olmayı nasıl başarıyorsun?,1
+Seni beceriksiz seni!,1
+Tek kelimeyle beceriksiz bir insansın.,1
+Bence hepiniz birer beceriksiz olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif beceriksiz.",1
+Sahadan çık artık beceriksiz!,1
+Senden beceriksiz dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor beceriksiz.",1
+Bir oyuncuya moron demen kırıcı.,0
+İnsanlara moron demen sence adil mi?,0
+Takıma moron demen kabul edilemez.,0
+Bize moron demenin alemi yok.,0
+Adama moron denmesini istemedim.,0
+Kaleciye moron demesi beni üzdü.,0
+Çocuklara moron demekten vazgeçin.,0
+Oyuncuya moron demek hoş mu şimdi?,0
+İnsanlar için moron kelimesini kullanmayı bırak.,0
+Kimse moron diye azarlanmayı hak etmez.,0
+“moron” derken kimi kastetmiş? Alıntıyı anlamadım.,0
+Yazdığı “moron” kelimesini sohbetten kaldırdım.,0
+Kardeşime moron denmesi hiç güzel değil.,0
+Sırf gol kaçtı diye moron demene gerek yoktu.,0
+Bunu moron diye küçümsemen yakışmadı.,0
+Chat kuralını hatırlatıyorum: moron diye seslenme.,0
+Lobide “moron” diyenleri nasıl bildiriyoruz?,0
+"Aslında çocuk moron değil, biraz heyecanlanmış.",0
+Herkese moron diyerek dalga geçme.,0
+Bize moron dendiği için itiraz ettik.,0
+"Ulan moron, bırak bu işi.",1
+En büyük moron sensin.,1
+moron herif geldi yine.,1
+Senin takımda ne işin var moron?,1
+Burada olduğun sürece moron diye çağıracağım seni.,1
+"Çekil önümden moron, tek yaptığın yolu kapatmak.",1
+O konuşan moron hiç susmayacak mı?,1
+Sen baştan aşağı moron birisin.,1
+Şu moron ile beni aynı gruba koymayın.,1
+"Ne biçim moron bu, yazdığına bak.",1
+"Hadi oradan moron, sen kim oluyorsun?",1
+Sana moron demek bile iltifat olur.,1
+Bu kadar moron olmayı nasıl başarıyorsun?,1
+Seni moron seni!,1
+Tek kelimeyle moron bir insansın.,1
+Bence hepiniz birer moron olarak doğdunuz.,1
+"Boşuna dil dökmeyin, bu herif moron.",1
+Sahadan çık artık moron!,1
+Senden moron dışında ne beklenir?,1
+"Bak bak, kendini oyuncu sanıyor moron.",1

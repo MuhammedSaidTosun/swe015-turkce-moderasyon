@@ -110,12 +110,12 @@ Word2Vec 29.211 kelime için vektör öğrendi. Güncellenen sinir ağında 14. 
 
 | Zaman | Ekranda gösterilecek işlem |
 |---|---|
-| 0:00–0:15 | Kapakta kendini, Türkçe oyun sohbeti görevini ve CPU hız hedefini tanıt. |
-| 0:15–0:40 | BERTurk INT8 ile “Sen bir aptalsın” yaz. Sonra Examples altında noktasız “Ona aptal demen hiç hoş değil” cümlesini seç. |
-| 0:40–1:05 | Word2Vec + neural network seç. Aynı iki örneği gönder. Bu model de hakareti gizler ve eleştiriyi görünür bırakır. |
-| 1:05–1:15 | Word list seçip eleştiriyi tekrar gönder; sözlüğün verdiği yanlış alarmı göster. |
-| 1:15–1:45 | 4. slaytta mimariyi, 7. slaytta beş modelin ölçülmüş sonuçlarını göster. |
-| 1:45–1:56 | INT8'in küçük boyutunu, test puanını ve 9 ms ortalama CPU süresini özetle. |
+| 0:00–0:13 | Kapakta adını, seçtiğin projeyi ve amacını söyle. |
+| 0:13–0:49 | Uygulamada model menüsünü aç. Sözlük, TF-IDF, Word2Vec, BERTurk FP32 ve BERTurk INT8 için birer cümleyle seçim nedenini anlat. |
+| 0:49–1:08 | BERTurk INT8’i seç. Examples altındaki selamlaşma, doğrudan hakaret ve hakarete itiraz örneklerine soldan sağa tıkla. |
+| 1:08–1:22 | Word2Vec + neural network modelini seç. Aynı üç örneği aynı sırayla gönder ve iki modelin kararlarını karşılaştır. |
+| 1:22–1:38 | 4. slaytta tarayıcı, yerel sunucu, CPU üzerinde çalışan model ve sohbete dönen sonucu göster. |
+| 1:38–1:58 | 7. slaytta Word2Vec’in makro-F1 artışını (0,6330 → 0,7644), INT8’in puanını (0,7838) ve ortalama CPU süresini (9,009 ms) göster. |
 
 Sesli kaydı en fazla iki dakika olacak şekilde tamamlayın. Video bağlantısını ve öğrenci numarasını düzenlenebilir sunumun ilk slaydına ekleyip PDF’yi yeniden dışa aktarın. Teslimden önce değerlendirecek kişinin özel depoya ve videoya erişebildiğini doğrulayın.
 
